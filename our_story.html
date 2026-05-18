@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Story - Engage Nepal</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-main:        #1A1A1A;
+      --red-btn:          #850000;
+      --red-btn-hover:    #B80000;
+      --icon-teal:        #00C1C9;
+      --heading-teal:     #196A5F;
+      --partners-bg:      #E4F9FF;
+      --about-bg:         #FFF8F5;
+      --footer-bg:        #006266;
+      --white:            #ffffff;
+      --designation-gray: #888888;
+      
+      --font-heading: 'DM Serif Display', serif;
+      --font-body: 'Geist', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    
+    body { 
+      font-family: var(--font-body); 
+      font-size: 16px; 
+      font-weight: 400; 
+      color: var(--text-main); 
+      background: var(--white); 
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: absolute; /* Placed over the hero image */
+      top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 60px;
+    }
+    .nav-logo img { height: 60px; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    
+    /* Using white color for dark background, but keeping the requested 400 weight */
+    .nav-links a {
+      color: var(--white); 
+      text-decoration: none; 
+      font-family: var(--font-body);
+      font-size: 18px; 
+      font-weight: 400; /* Not bold */
+      letter-spacing: 0.5px;
+      padding-bottom: 3px; 
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .nav-links a.active { 
+      border-bottom: 2px solid var(--icon-teal); 
+    }
+    .nav-links a:hover { 
+      border-bottom: 2px solid var(--icon-teal); 
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────────── */
+    .hero-story {
+      position: relative; 
+      min-height: 100vh;
+      background: url('images/mountain.png') center center / cover no-repeat;
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #333;
+    }
+    .hero-story::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(20, 20, 20, 0.7); /* Dark overlay */
+      z-index: 1;
+    }
+    .hero-story-content {
+      position: relative; z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 24px;
+      margin-top: 40px;
+    }
+    .hero-subtitle {
+      color: #FF6765; /* A slightly brighter red for dark background readability */
+      font-family: var(--font-heading);
+      font-size: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .hero-story-content h1 {
+      font-family: var(--font-heading);
+      font-size: 56px;
+      font-weight: 400; color: var(--white);
+      line-height: 1.2; letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .hero-story-content p {
+      color: rgba(255,255,255,0.9); 
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .scroll-discover {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--white);
+      font-size: 14px;
+      text-align: center;
+      opacity: 0.8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .scroll-discover svg {
+      width: 20px;
+      height: 20px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    /* ─── STORY TIMELINE ──────────────────────────────────────────── */
+    .story-section {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .story-row {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 100px;
+    }
+    .story-row:last-child {
+      margin-bottom: 0;
+    }
+    .story-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .story-content {
+      flex: 1;
+    }
+    .story-image {
+      flex: 1;
+    }
+    .story-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .story-date {
+      color: #FF6765; /* Updated color to #FF6765 */
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .story-heading {
+      font-family: var(--font-heading); 
+      font-size: 32px; font-weight: 400;
+      letter-spacing: 1px; color: var(--text-main);
+      display: inline-block; padding-bottom: 8px;
+      border-bottom: 3px solid var(--heading-teal);
+      margin-bottom: 24px;
+    }
+    .story-content p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--text-main);
+      margin-bottom: 20px;
+    }
+    .story-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .brand-highlight-red { color: #FF6765; font-weight: 700; } /* Updated color to #FF6765 */
+    .brand-highlight-teal { color: var(--icon-teal); font-weight: 700; }
+
+    /* ─── BUTTONS ─────────────────────────────── */
+    .btn-red {
+      box-sizing: border-box;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 43px; 
+      padding: 0 20px; 
+      font-family: var(--font-body); 
+      font-size: 14px; 
+      font-weight: 500; 
+      border-radius: 4px; cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
+      gap: 10px;
+      background: var(--red-btn); color: var(--white);
+      border: none; 
+    }
+    .btn-red img { display: block; }
+    .btn-red:hover { background: var(--red-btn-hover); transform: translateY(-1px); }
+
+    /* ─── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--footer-bg); color: var(--white);
+      padding: 60px 60px 40px;
+      font-family: var(--font-body);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 40px; max-width: 1100px; margin: 0 auto 40px;
+    }
+    .footer-brand img { max-width: 180px; height: auto; object-fit: contain; margin-bottom: 20px; display: block; }
+    .footer-socials { display: flex; gap: 16px; margin-top: 4px; }
+    
+    .footer-socials a {
+      width: 40px; height: 40px; border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 18px; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .footer-socials a:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .footer-col h4 {
+      font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
+      margin-bottom: 24px; color: var(--white);
+      line-height: 1.4;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a {
+      color: var(--white); text-decoration: none; font-size: 16px;
+      transition: opacity 0.2s;
+    }
+    .footer-col ul li a:hover { opacity: 0.8; }
+    .footer-col p { font-size: 16px; color: var(--white); line-height: 1.8; }
+    
+    .contact-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; 
+      margin-bottom: 28px;
+    }
+    
+    .footer-col .btn-red { margin-top: 16px; }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px; text-align: center; max-width: 1100px; margin: 0 auto;
+    }
+    .footer-bottom p { font-size: 14px; color: var(--white); opacity: 0.7; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .hero-story-content h1 { font-size: 42px; }
+      .story-section { padding: 60px 24px; }
+      .story-row, .story-row:nth-child(even) { flex-direction: column; gap: 40px; margin-bottom: 70px; }
+      .story-image { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="engage_logo1.svg" alt="Engage Nepal" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="who_we_are.html">Who We Are</a></li>
+    <li><a href="our_story.html" class="active">Our Story</a></li>
+    <li><a href="our_partners.html">Our Partners</a></li>
+    <li><a href="contact_us.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<section class="hero-story">
+  <div class="hero-story-content">
+    <div class="hero-subtitle">Our Story</div>
+    <h1>How it Began...</h1>
+    <p>A decade of resilience, partnership, and humanitarian impact in the heart of the Himalayas.</p>
+  </div>
+  
+  <div class="scroll-discover">
+    Scroll to Discover
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+</section>
+
+<section class="story-section">
+  
+  <div class="story-row">
+    <div class="story-content">
+      <span class="story-date">April 2015</span>
+      <h2 class="story-heading">The Mountain Roared</h2>
+      <p>The earth roared, the mountain fell, and the village was gone. Not damaged, not devastated, totally gone. Disappeared – as though it had never been, and with it the lives of most of those who lived there.</p>
+      <p>Men and women, children and grandchildren, their cows; and their goats; and their donkeys. All gone! And not just one village, many. And not a few lives lost, but over eight thousand, with tens of thousands injured and over two million people left homeless – most of whom remain at risk today. A scene repeated across Nepal.</p>
+    </div>
+    <div class="story-image">
+      <img src="images/april.png" alt="Earthquake damage in Nepal" /> </div>
+  </div>
+
+  <div class="story-row">
+    <div class="story-content">
+      <span class="story-date">December 2015</span>
+      <h2 class="story-heading">A New Chapter</h2>
+      <p>On December 1, 2015, Ambassador Scott DeLisi, on his first day of retirement from the State Department, took over the reins of Engage Nepal.</p>
+      <p>Although our initial focus was on disaster risk reduction and preparedness (and we still care about this today), we knew that it was too much to ask families to worry about when they were struggling to put a meal on the table, to pay school fees for their children and to ensure that they had access to life-saving health care when needed.</p>
+    </div>
+    <div class="story-image">
+      <img src="images/december.png" alt="Ambassador Scott DeLisi meeting with locals" /> </div>
+  </div>
+
+  <div class="story-row">
+    <div class="story-content">
+      <span class="story-date">Since then...</span>
+      <h2 class="story-heading">Our Mission Continues</h2>
+      <p>Over the past ten years we have worked with our partners in Nepal on close to 100 projects in support of people who needed a helping hand. Our commitment is to the children at risk, the women who have been marginalized, and to communities living on the edge of despair as climate change threatens their way of life.</p>
+      <p>And when disaster strikes, we are there too. We have responded to earthquakes and floods and fire and, in the darkest days of the COVID pandemic, we were there to save lives and to remind those who felt abandoned that there were those who care.</p>
+      <p>Today, our mission continues. Whether responding in emergencies or helping people find their way in a changing world we do what we have always done.</p>
+      <p>We <span class="brand-highlight-red">Engage</span> <span class="brand-highlight-teal">Nepal.</span></p>
+    </div>
+    <div class="story-image">
+      <img src="images/bouddha.png" alt="Bouddhanath Stupa" /> </div>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <img src="engage_logo1.svg" alt="Engage Nepal" />
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="PayPal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.36 20.3H2.87c-.28 0-.49-.24-.44-.51L5.6 1.76c.04-.24.25-.42.5-.42h6.7c2.19 0 3.84.4 4.75 1.48.86 1.02 1.1 2.22.86 3.98-.03.17-.06.33-.1.49-.8 4.34-3.66 5.86-7.3 5.86H9.17c-.47 0-.84.34-.92.8l-1.02 6.55c-.04.22-.24.38-.47.38z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="who_we_are.html">Who We Are</a></li>
+        <li><a href="our_story.html">Our Story</a></li>
+        <li><a href="our_partners.html">Our Partners</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="contact-info-block">
+        <div>info@engagenepal.org</div>
+        <div>703-401-2951</div>
+        <div>12512 Cavalier Forest Ct,<br />Bristow, Va 20139, USA</div>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Join Us.<br />Offer the gift of Hope!</h4>
+      <a href="#" class="btn-red">
+        <img src="donate.svg" alt="Donate" width="20" height="20" />
+        Give the Gift of Hope
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 Engage Nepal. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

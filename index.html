@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engage Nepal</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-main:        #1A1A1A;
+      --red-btn:          #850000;
+      --red-btn-hover:    #B80000;
+      --icon-teal:        #00C1C9;
+      --heading-teal:     #196A5F;
+      --partners-bg:      #E4F9FF;
+      --footer-bg:        #006266;
+      --white:            #ffffff;
+      --designation-gray: #888888;
+      
+      --font-heading: 'DM Serif Display', serif;
+      --font-body: 'Geist', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    
+    body { 
+      font-family: var(--font-body); 
+      font-size: 16px; 
+      font-weight: 400; 
+      color: var(--text-main); 
+      background: var(--white); 
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────────────── */
+    nav {
+      position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 60px;
+    }
+    .nav-logo img { height: 60px; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--white); text-decoration: none; 
+      font-family: var(--font-body);
+      font-size: 18px; 
+      font-weight: 500; 
+      letter-spacing: 0.5px;
+      padding-bottom: 3px; transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+    
+    /* Navbar Active/Hover State */
+    .nav-links a.active { 
+      border-bottom: 2px solid var(--icon-teal); 
+      color: var(--white);
+    }
+    .nav-links a:hover { 
+      border-bottom: 2px solid var(--icon-teal); 
+      color: var(--white);
+    }
+
+    /* ─── HERO ────────────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      background: url('bg.svg') center center / cover no-repeat;
+      display: flex; align-items: center;
+      background-color: #333; /* Fallback */
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(30, 30, 30, 0.78);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 900px; /* Increased to allow wider text lines */
+      padding: 0 60px; margin-top: 80px;
+    }
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      font-weight: 400; color: var(--white);
+      line-height: 1.2; letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+    .hero-content p {
+      color: rgba(255,255,255,0.92); 
+      font-size: 16px;
+      line-height: 1.8; margin-bottom: 36px; 
+      max-width: 800px; /* Increased to allow wider text lines */
+    }
+    
+    .hero-buttons { 
+      display: flex; gap: 14px; align-items: center; flex-wrap: wrap; 
+    }
+    
+    /* Button Styles */
+    .btn-red, .btn-outline {
+      box-sizing: border-box;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 43px; /* Enforced specific height */
+      padding: 0 20px; 
+      font-family: var(--font-body); /* Using Geist */
+      font-size: 14px; /* Explicitly 14px */
+      font-weight: 500; /* Medium */
+      border-radius: 4px; cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .btn-red img, .btn-outline img {
+      display: block; /* Fixes inconsistent spacing inside flex containers */
+    }
+
+    .btn-red {
+      gap: 10px;
+      background: var(--red-btn); color: var(--white);
+      border: none; 
+    }
+    .btn-red:hover { background: var(--red-btn-hover); transform: translateY(-1px); }
+    
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid var(--white);
+    }
+    .btn-outline:hover { 
+      text-decoration: underline; 
+    }
+
+    /* ─── SECTION SHARED ──────────────────────────────────────────── */
+    section { padding: 80px 60px; }
+    .section-title {
+      text-align: center; margin-bottom: 50px;
+    }
+    .section-title h2 {
+      font-family: var(--font-heading); 
+      font-size: 32px; font-weight: 400;
+      letter-spacing: 1px; color: var(--text-main);
+      display: inline-block; padding-bottom: 10px;
+      border-bottom: 3px solid var(--heading-teal); 
+    }
+
+    /* ─── PILLARS ─────────────────────────────────────────────────── */
+    .pillars { background: var(--white); }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .pillar { padding: 10px 0; }
+    
+    .pillar-icon {
+      width: 72px; height: 72px; margin-bottom: 16px;
+      color: var(--icon-teal);
+    }
+    
+    .pillar h3 {
+      font-family: var(--font-body); font-weight: 600;
+      font-size: 18px; letter-spacing: 1px;
+      margin-bottom: 12px; color: var(--text-main);
+    }
+    .pillar p { 
+      font-family: var(--font-body);
+      font-size: 16px; 
+      font-weight: 400; 
+      line-height: 1.75; 
+      color: var(--text-main); 
+    }
+
+    /* ─── PARTNERS ────────────────────────────────────────────────── */
+    .partners { background: var(--partners-bg); }
+    .partners-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .partners-text h2 {
+      font-family: var(--font-heading); font-size: 32px; font-weight: 400;
+      letter-spacing: 1px; margin-bottom: 20px; color: var(--text-main);
+    }
+    .partners-text p { 
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px; 
+      line-height: 1.8; 
+      color: var(--text-main); 
+      margin-bottom: 20px; 
+    }
+    .partners-link {
+      color: var(--heading-teal); font-weight: 600; font-size: 16px;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .partners-link:hover { text-decoration: underline; }
+    .partners-logos {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .partners-logos img {
+      width: 100%; max-width: 500px; height: auto;
+    }
+
+    /* ─── DIRECTOR ────────────────────────────────────────────────── */
+    .director { background: var(--white); }
+    .director-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: 280px 1fr; gap: 60px; align-items: start;
+    }
+    
+    .director-photo-wrapper {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      width: 100%;
+    }
+    .director-photo-bg {
+      position: absolute;
+      bottom: -12px; 
+      left: -12px;
+      width: 100%;
+      height: 100%;
+      background-color: var(--icon-teal);
+      z-index: -1;
+    }
+    .director-photo-wrapper img {
+      width: 100%; display: block;
+      border: none; 
+    }
+    
+    .director-quote { padding-top: 20px; }
+    
+    .quote-icon {
+      width: 56px; 
+      height: auto; 
+      margin-bottom: 20px; 
+      display: block;
+    }
+    
+    .director-quote blockquote {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 16px; line-height: 1.8; color: var(--text-main);
+      margin-bottom: 28px;
+    }
+    .director-name { font-weight: 600; font-size: 18px; margin-bottom: 4px; }
+    .director-title { font-size: 14px; color: var(--designation-gray); line-height: 1.7; }
+
+    /* ─── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      background: var(--footer-bg); color: var(--white);
+      padding: 60px 60px 40px;
+      font-family: var(--font-body);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 40px; max-width: 1100px; margin: 0 auto 40px;
+    }
+    .footer-brand img { max-width: 180px; height: auto; object-fit: contain; margin-bottom: 20px; display: block; }
+    .footer-socials { display: flex; gap: 16px; margin-top: 4px; }
+    
+    .footer-socials a {
+      width: 40px; height: 40px; border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 18px; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .footer-socials a:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .footer-col h4 {
+      font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
+      margin-bottom: 24px; color: var(--white);
+      line-height: 1.4;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a {
+      color: var(--white); text-decoration: none; font-size: 16px;
+      transition: opacity 0.2s;
+    }
+    .footer-col ul li a:hover { opacity: 0.8; }
+    .footer-col p { font-size: 16px; color: var(--white); line-height: 1.8; }
+    
+    .contact-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; /* Addresses the gap/spacing shown in the visual reference */
+      margin-bottom: 28px;
+    }
+    
+    .footer-col .btn-red { margin-top: 16px; }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 24px; text-align: center; max-width: 1100px; margin: 0 auto;
+    }
+    .footer-bottom p { font-size: 14px; color: var(--white); opacity: 0.7; }
+
+    /* ─── SVG ICONS ───────────────────────────────────────────────── */
+    .icon-health, .icon-education, .icon-livelihood, .icon-environment {
+      display: block; width: 72px; height: 72px; margin-bottom: 18px;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-br { display: none; } /* Hides custom line breaks on mobile so text wraps naturally */
+      nav { padding: 16px 24px; }
+      section { padding: 60px 24px; }
+      .hero-content { padding: 0 24px; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .partners-inner { grid-template-columns: 1fr; }
+      .director-inner { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="engage_logo1.svg" alt="Engage Nepal" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="who_we_are.html">Who We Are</a></li>
+    <li><a href="our_story.html">Our Story</a></li>
+    <li><a href="our_partners.html">Our Partners</a></li>
+    <li><a href="contact_us.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>WORKING WITH NEPALI PARTNERS<br class="hero-br"> TO CHANGE LIVES AND SAVE<br class="hero-br"> LIVES.</h1>
+    <p>Supported by the compassion of everyday Americans, Engage Nepal bridges global generosity with local<br class="hero-br"> action. Under the leadership of former U.S. Ambassador Scott DeLisi, we proudly partner with grassroots<br class="hero-br"> organizations across Nepal to drive sustainable, community-led impact where it is needed most.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-red">
+        <img src="donate.svg" alt="Donate" width="20" height="20" />
+        Give the Gift of Hope
+      </a>
+      <a href="who_we_are.html" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="section-title"><h2>4 PILLARS OF ENGAGE NEPAL</h2></div>
+  <div class="pillars-grid">
+
+    <div class="pillar">
+      <img src="Health.svg" class="icon-health" alt="Health" />
+      <h3>HEALTH</h3>
+      <p>Ensuring vulnerable communities have access to vital care by supporting preventative treatments, medical responses, and community health camps.</p>
+    </div>
+
+    <div class="pillar">
+      <img src="education.svg" class="icon-education" alt="Education" />
+      <h3>EDUCATION</h3>
+      <p>Empowering the next generation by bridging the digital divide, supporting inclusive learning, and ensuring at-risk children have the resources to succeed.</p>
+    </div>
+
+    <div class="pillar">
+      <img src="livelihood.svg" class="icon-livelihood" alt="Livelihood" />
+      <h3>LIVELIHOOD</h3>
+      <p>Creating sustainable economic opportunities &amp; skills training for marginalized women and men, enabling them to support their families.</p>
+    </div>
+
+    <div class="pillar">
+      <img src="environment.svg" class="icon-environment" alt="Environment" />
+      <h3>ENVIRONMENT</h3>
+      <p>Partnering with communities to build resilience against climate change through sustainable green initiatives, eco-friendly practices, and disaster risk reduction.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="partners">
+  <div class="partners-inner">
+    <div class="partners-text">
+      <h2>OUR PARTNERS</h2>
+      <p>At Engage Nepal, we believe that even small organizations can make a massive difference. Over the past decade, we have partnered with dedicated 14 Nepali organizations to build essential infrastructure, empower communities, and drive sustainable solutions for a more resilient future.</p>
+      <a href="our_partners.html" class="partners-link">View All Partners <img src="chevron.svg" alt="chevron" width="12" height="12"/></a>
+    </div>
+    <div class="partners-logos">
+      <img src="images/all_logo.png" alt="All Partners" />
+    </div>
+  </div>
+</section>
+
+<section class="director">
+  <div class="section-title"><h2>EXECUTIVE DIRECTOR'S MESSAGE</h2></div>
+  <div class="director-inner">
+    <div class="director-photo">
+      <div class="director-photo-wrapper">
+        <div class="director-photo-bg"></div>
+        <img src="images/Scott_image.png" alt="Scott DeLisi" />
+      </div>
+    </div>
+    <div class="director-quote">
+      <img src="images/quote.png" alt="Quote mark" class="quote-icon" />
+      <blockquote>
+        Projects that have made a difference in the four core areas that define our work: health, education, livelihoods, and climate adaptation. The funds we have raised have come largely from everyday Americans who give what they can with open hearts and willing spirits. I am grateful beyond measure for the compassion and kindness that inspires them.
+      </blockquote>
+      <div class="director-name">Scott DeLisi</div>
+      <div class="director-title">
+        US Ambassador to Nepal (ret'd)<br />
+        Executive Director (Engage Nepal)<br />
+        Virginia, USA
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <img src="engage_logo1.svg" alt="Engage Nepal" />
+      <div class="footer-socials">
+        <a href="#" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="PayPal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.36 20.3H2.87c-.28 0-.49-.24-.44-.51L5.6 1.76c.04-.24.25-.42.5-.42h6.7c2.19 0 3.84.4 4.75 1.48.86 1.02 1.1 2.22.86 3.98-.03.17-.06.33-.1.49-.8 4.34-3.66 5.86-7.3 5.86H9.17c-.47 0-.84.34-.92.8l-1.02 6.55c-.04.22-.24.38-.47.38z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="who_we_are.html">Who We Are</a></li>
+        <li><a href="our_story.html">Our Story</a></li>
+        <li><a href="our_partners.html">Our Partners</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="contact-info-block">
+        <div>info@engagenepal.org</div>
+        <div>703-401-2951</div>
+        <div>12512 Cavalier Forest Ct,<br />Bristow, Va 20139, USA</div>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Join Us.<br />Offer the gift of Hope!</h4>
+      <a href="#" class="btn-red">
+        <img src="donate.svg" alt="Donate" width="20" height="20" />
+        Give the Gift of Hope
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2024 Engage Nepal. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
