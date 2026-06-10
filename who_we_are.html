@@ -4,396 +4,888 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Who We Are - Engage Nepal</title>
+  
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-mono/style.css" rel="stylesheet">
   
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --text-main:        #1A1A1A;
-      --red-btn:          #850000;
-      --red-btn-hover:    #B80000;
+      /* ─── BRAND CORE PALETTE ─── */
+      --text-main:        #1A1A1A; 
+      --desc-text:        rgba(0, 0, 0, 0.651); 
+      --visit-link:       #2058DB; 
+      
+      --red-btn:          #E44646;
+      --red-btn-hover:    #F85959;
+      
       --icon-teal:        #00C1C9;
-      --heading-teal:     #196A5F;
-      --partners-bg:      #E4F9FF;
-      --about-bg:         #FFF8F5;
-      --footer-bg:        #006266;
+      --heading-teal:     #40D6B9; 
+      --partners-bg:      #E8FAFF; 
+      --footer-bg:        #005F5B;   
       --white:            #ffffff;
-      --designation-gray: #888888;
+      --page-bg:          #ffffff; 
+      --number-bg:        #FCEAE9; 
+      --stat-banner-bg:   #0EB0B7;
+      --vision-bg:        #FEECE9;
+      
+      --story-bg:         #ffffff;
+      --story-card-bg:    #E8F2F1;
       
       --font-heading: 'DM Serif Display', serif;
       --font-body: 'Geist', sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+
+      /* ─── FLUID RESPONSIVE VARIABLES ─── */
+      --layout-max:    1400px;
+      --layout-margin: clamp(20px, 5vw, 80px);
+      --col-gutter:    clamp(24px, 4vw, 60px);
     }
 
     html { scroll-behavior: smooth; }
-     
+    
     body { 
       font-family: var(--font-body); 
       font-size: 16px; 
       font-weight: 400; 
       color: var(--text-main); 
-      background: var(--white); 
+      background: var(--page-bg); 
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── NAV ─────────────────────────────────────────────────────── */
-    nav {
-      position: relative; /* Standard page flow so it sits above the white background */
-      z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 60px;
-      background: var(--white);
+    /* ─── LAYOUT CONTAINER ─── */
+    .container {
+      max-width: var(--layout-max);
+      margin: 0 auto;
+      padding: 0 var(--layout-margin);
     }
-    .nav-logo img { height: 60px; }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+
+    /* ─── FIXED DYNAMIC NAVIGATION BAR ─── */
+    nav {
+      position: fixed; 
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+      height: 90px; 
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
     
-    /* Nav links updated to black, not bold, with original spacing */
-    .nav-links a {
-      color: var(--text-main); /* Black color */
+    .nav-inner {
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      height: 100%;
+      position: relative; 
+    }
+
+    .nav-logo { 
+      display: block; 
+      text-decoration: none; 
+      width: 120px; 
+      height: 100%;
+    }
+    
+    .nav-logo img { 
+      position: absolute; 
+      top: 10px; 
+      height: clamp(65px, 8vw, 85px); 
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+      display: block; 
+      z-index: 105; 
+    }
+    .nav-logo img:hover { transform: scale(1.03); }
+
+    .nav-links { display: flex; gap: 8px; list-style: none; align-items: center; }
+    .nav-links li { position: relative; }
+    
+    .nav-links > li > a {
+      color: var(--text-main); 
       text-decoration: none; 
       font-family: var(--font-body);
-      font-size: 18px; 
-      font-weight: 400; /* Not bold */
-      letter-spacing: 0.5px;
-      padding-bottom: 3px; 
-      transition: all 0.2s;
-      border-bottom: 2px solid transparent;
+      font-size: 15px; 
+      font-weight: 500; 
+      letter-spacing: 0.3px;
+      padding: 8px 14px; 
+      border-radius: 50px; 
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
     }
     
-    /* Navbar Active/Hover State */
-    .nav-links a.active { 
-      border-bottom: 2px solid var(--icon-teal); 
-    }
-    .nav-links a:hover { 
-      border-bottom: 2px solid var(--icon-teal); 
+    .nav-links > li > a:hover { 
+      background: rgba(0,0,0,0.04);
     }
 
-    /* ─── BUTTONS (from previous fix) ─────────────────────────────── */
-    .btn-red, .btn-outline {
-      box-sizing: border-box;
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 43px; 
-      padding: 0 20px; 
-      font-family: var(--font-body); 
-      font-size: 14px; 
-      font-weight: 500; 
-      border-radius: 4px; cursor: pointer; text-decoration: none;
-      transition: all 0.2s;
+    .nav-links > li > a.active { 
+      background: var(--icon-teal); 
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(0, 193, 201, 0.3); 
+    }
+
+    .dropdown-arrow-img {
+      width: 12px;
+      height: auto;
+      margin-left: 6px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0.7;
     }
     
-    .btn-red img, .btn-outline img {
+    .nav-links li:hover .dropdown-arrow-img { transform: rotate(180deg); }
+
+    /* ─── DROPDOWN PANEL MENU ─── */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(15px);
+      background: var(--white);
+      min-width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+      z-index: 200;
+    }
+
+    .nav-links li:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(5px); 
+    }
+
+    .dropdown-menu a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
+      padding: 14px 24px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover {
+      color: var(--icon-teal);
+      background: rgba(0, 193, 201, 0.03);
+      padding-left: 30px; 
+    }
+    .dropdown-menu a::after {
+      content: "\2192";
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dropdown-menu a:hover::after { opacity: 1; transform: translateX(0); }
+    .nav-programs-label { cursor: default; }
+
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1010;
+      padding: 8px;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background-color: var(--text-main);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+
+    /* ─── CONTENT OFFSET FOR FIXED NAVBAR ─── */
+    main { padding-top: 90px; }
+
+    /* ─── PHILANTHROPIC BRIDGE ─── */
+    .hero-bg-wrapper {
+      background: var(--partners-bg);
+      width: 100%;
+    }
+
+    .hero-split {
+      display: grid;
+      grid-template-columns: 0.96fr 1.04fr;
+      gap: var(--col-gutter);
+      padding: clamp(40px, 6vw, 80px) 0;
+      align-items: center;
+    }
+
+    .hero-split .img-holder {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      width: 100%;
+    }
+
+    .hero-split .img-holder img {
+      width: 100%;
+      height: clamp(300px, 35vw, 400px);
+      object-fit: cover;
       display: block;
     }
 
-    .btn-red {
-      gap: 10px;
-      background: var(--red-btn); color: var(--white);
-      border: none; 
-    }
-    .btn-red:hover { background: var(--red-btn-hover); transform: translateY(-1px); }
-    
-    .btn-outline {
-      background: transparent; color: var(--white);
-      border: 2px solid var(--white);
-    }
-    .btn-outline:hover { 
-      text-decoration: underline; 
-    }
-
-    /* ─── SECTION SHARED ──────────────────────────────────────────── */
-    section { padding: 80px 60px; }
-    .section-title {
-      text-align: center; margin-bottom: 50px;
-    }
-    .section-title h2 {
-      font-family: var(--font-heading); 
-      font-size: 32px; font-weight: 400;
-      letter-spacing: 1px; color: var(--text-main);
-      display: inline-block; padding-bottom: 10px;
-      border-bottom: 3px solid var(--heading-teal); 
-    }
-
-    /* ─── ABOUT US ────────────────────────────────────────────────── */
-    .about-us {
-      background: var(--about-bg);
-    }
-    .about-text {
-      max-width: 1050px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .about-text p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--text-main);
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(24px, 3.5vw, 34px); 
+      font-weight: 400;
+      line-height: 1.25;
+      color: #1A1A1A;
       margin-bottom: 24px;
     }
-    .highlight-teal {
-      color: var(--heading-teal);
+
+    .hero-content p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--desc-text);
+    }
+
+    /* ─── COUNTER STATS BANNER ─── */
+    .stats-banner {
+      background: var(--stat-banner-bg);
+      padding: clamp(30px, 4vw, 40px) 0;
+      color: var(--white);
+    }
+
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      flex: 1;
+      min-width: 160px;
+      position: relative;
+    }
+
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .stats-banner h3 {
+      font-family: var(--font-mono);
+      font-size: clamp(34px, 4.5vw, 44px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-item p {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      opacity: 0.9;
+    }
+
+    /* ─── OUR VISION ─── */
+    .vision-section {
+      background: var(--vision-bg);
+      padding: clamp(50px, 6vw, 70px) 0;
+      text-align: center;
+    }
+
+    .section-title-center {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .section-title-center h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 400;
+      color: var(--text-main);
+      letter-spacing: 0.5px;
+      display: inline-block;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--heading-teal);
+      text-transform: uppercase;
+    }
+
+    .vision-text {
+      max-width: 1100px;
+      margin: 0 auto;
+      font-size: clamp(15px, 2vw, 16px);
+      line-height: 1.8;
+      color: var(--desc-text);
+      font-weight: 500;
+    }
+
+    .vision-text strong {
+      color: #196A5F;
+      display: block;
+      margin-top: 16px;
       font-weight: 600;
     }
 
-    .stats-banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--white);
-      max-width: 1100px;
-      margin: 50px auto 0;
-      padding: 30px 0;
-      border: 1px solid #EAEAEA;
-      border-radius: 4px;
-    }
-    .stat-box {
-      flex: 1;
-      text-align: left;
-      padding: 0 40px;
-    }
-    .stat-num {
-      font-size: 42px;
-      font-weight: 700;
-      color: var(--icon-teal);
-      margin-bottom: 8px;
-      line-height: 1;
-    }
-    .stat-desc {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--heading-teal);
-    }
-    .stat-divider {
-      width: 1px;
-      height: 70px;
-      background-color: #EAEAEA;
+    /* ─── TIMELINE SECTION ─── */
+    .story-bg-wrapper {
+      background: var(--story-bg); 
+      width: 100%;
     }
 
-    /* ─── OUR WORK ────────────────────────────────────────────────── */
-    .our-work {
-      background: var(--white);
+    .story-section {
+      padding: clamp(50px, 6vw, 80px) 0 clamp(60px, 8vw, 100px);
     }
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+
+    .story-title-left {
+      margin-bottom: 40px;
+      display: inline-block;
+    }
+    
+    .story-title-left h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--heading-teal);
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    .story-container-wrapper {
+      position: relative;
       max-width: 1100px;
-      margin: 0 auto 50px;
-    }
-    .work-grid img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      aspect-ratio: 4/3;
-      border-radius: 4px;
-    }
-    .work-poem {
-      text-align: center;
-      max-width: 800px;
       margin: 0 auto;
     }
-    .work-poem p {
-      font-size: 16px;
-      line-height: 1.9;
-      color: var(--text-main);
-      font-style: italic;
-    }
-    .work-poem .poem-teal {
-      color: var(--icon-teal);
-    }
-    .work-poem strong {
-      font-weight: 700;
-      display: block;
-      margin-top: 4px;
-      font-style: normal;
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+      position: relative;
     }
 
-    /* ─── FOOTER (from previous fix) ──────────────────────────────── */
-    footer {
-      background: var(--footer-bg); color: var(--white);
-      padding: 60px 60px 40px;
-      font-family: var(--font-body);
+    /* Dynamic context bridges connecting entries together */
+    .row-curve-bridge {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 140px; 
+      pointer-events: none;
+      z-index: 10;
+      overflow: visible;
     }
-    .footer-grid {
-      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-      gap: 40px; max-width: 1100px; margin: 0 auto 40px;
+
+    .bridge-1-to-2 { top: 380px; }
+    .bridge-2-to-3 { top: 900px; }
+
+    .timeline-img {
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      width: 100%;
     }
-    .footer-brand img { max-width: 180px; height: auto; object-fit: contain; margin-bottom: 20px; display: block; }
-    .footer-socials { display: flex; gap: 16px; margin-top: 4px; }
-    
-    .footer-socials a {
-      width: 40px; height: 40px; border: 1.5px solid rgba(255,255,255,0.5);
-      border-radius: 4px; display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 18px; text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+
+    .timeline-img img {
+      width: 100%;
+      height: 300px; 
+      object-fit: cover;
+      display: block;
     }
-    .footer-socials a:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
-    .footer-col h4 {
-      font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
-      margin-bottom: 24px; color: var(--white);
-      line-height: 1.4;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 12px; }
-    .footer-col ul li a {
-      color: var(--white); text-decoration: none; font-size: 16px;
-      transition: opacity 0.2s;
-    }
-    .footer-col ul li a:hover { opacity: 0.8; }
-    .footer-col p { font-size: 16px; color: var(--white); line-height: 1.8; }
-    
-    .contact-info-block {
+
+    .timeline-box {
+      background: var(--story-card-bg);
+      padding: clamp(25px, 4vw, 50px);
+      border-radius: 4px;
       display: flex;
       flex-direction: column;
-      gap: 16px; 
-      margin-bottom: 28px;
+      justify-content: center;
+      min-height: 380px; 
+      position: relative;
     }
-    
-    .footer-col .btn-red { margin-top: 16px; }
-    
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 24px; text-align: center; max-width: 1100px; margin: 0 auto;
-    }
-    .footer-bottom p { font-size: 14px; color: var(--white); opacity: 0.7; }
 
-    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      section { padding: 60px 24px; }
-      .stats-banner { flex-direction: column; padding: 20px 0; }
-      .stat-divider { width: 80%; height: 1px; margin: 20px auto; }
-      .stat-box { text-align: center; padding: 10px 0; }
-      .work-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+    /* Pin node assembly on standard layout display contexts */
+    .timeline-box.has-top-pin::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background-color: #A3D9CE;
+      border-radius: 50%;
     }
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .work-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
+    .timeline-box.has-top-pin::after {
+      content: '';
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      width: 1.75px;
+      height: 24px;
+      background-color: rgba(85, 157, 145, 0.6);
+    }
+
+    .timeline-box h3 {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: clamp(20px, 2.5vw, 24px);
+      color: #0A322C; 
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    .timeline-box p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--desc-text);
+    }
+
+    /* Grid layout configurations */
+    .row-1 .timeline-img { grid-column: 1; }
+    .row-1 .timeline-box { grid-column: 2; }
+
+    .row-2 { margin-top: 140px; } 
+    .row-2 .timeline-box { grid-column: 1; }
+    .row-2 .timeline-img { grid-column: 2; }
+
+    .row-3 { margin-top: 140px; }
+    .row-3 .timeline-img { grid-column: 1; }
+    .row-3 .timeline-box { grid-column: 2; }
+
+    /* ─── FOOTER ANCHOR BLOCK ─── */
+    footer {
+      background: var(--footer-bg); 
+      color: var(--white);
+      padding: clamp(50px, 6vw, 80px) 0 40px;
+      font-family: var(--font-body);
+    }
+
+    .footer-grid {
+      display: grid; 
+      grid-template-columns: 2fr 1fr 1.2fr 1.8fr;
+      gap: clamp(20px, 4vw, 40px); 
+      margin-bottom: 40px;
+    }
+
+    .footer-logo-img { 
+      max-width: 100%; 
+      height: 60px; 
+      margin-bottom: 24px; 
+      display: block; 
+      object-fit: contain; 
+    }
+
+    .footer-socials { display: flex; gap: 12px; }
+    
+    .footer-socials a {
+      width: 36px; 
+      height: 36px; 
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 4px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      color: var(--white); 
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .footer-socials a:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+    .footer-col h4 {
+      font-size: 16px; 
+      font-weight: 600; 
+      letter-spacing: 0.5px;
+      margin-bottom: 24px; 
+      color: var(--white);
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    
+    .footer-col ul li a {
+      color: #d0e5e4; 
+      text-decoration: none; 
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--white); }
+    
+    .contact-info-block { display: flex; flex-direction: column; gap: 12px; }
+
+    .btn-red {
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center;
+      height: 44px; 
+      padding: 0 24px; 
+      font-family: var(--font-body); 
+      font-size: 14px; 
+      font-weight: 500; 
+      border-radius: 4px; 
+      cursor: pointer; 
+      text-decoration: none; 
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+      gap: 10px;
+      background: var(--red-btn); 
+      color: var(--white); 
+      border: none; 
+      white-space: nowrap;
+    }
+
+    .btn-red:hover { 
+      background: var(--red-btn-hover); 
+      transform: translateY(-3px); 
+      box-shadow: 0 6px 15px rgba(228, 70, 70, 0.3); 
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px; 
+      text-align: center;
+    }
+
+    .footer-bottom p { font-size: 14px; color: #d0e5e4; opacity: 0.7; }
+
+    /* ─── BREAKPOINTS SYSTEM ─── */
+    @media (max-width: 1024px) {
+      .hero-split { grid-template-columns: 1fr; gap: 40px; }
+      .hero-split .img-holder img { height: 320px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      
+      .row-curve-bridge, .timeline-box.has-top-pin::before, .timeline-box.has-top-pin::after { display: none !important; }
+      .timeline-row { grid-template-columns: 1fr; gap: 30px; margin-top: 0 !important; }
+      .timeline-row .timeline-img, .timeline-row .timeline-box { grid-column: unset !important; }
+      .timeline-box { min-height: auto; }
+      .timeline-img img { height: 260px; }
+      .row-2 .timeline-box { order: 1; }
+      .row-2 .timeline-img { order: -1; } /* Image positions on top of card on responsive display formats */
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      
+      /* Mobile Menu Drawer Overlay */
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 24px 40px;
+        gap: 16px;
+        box-shadow: -4px 0 30px rgba(0,0,0,0.1);
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+      
+      .nav-links.open { right: 0; }
+      .nav-links > li { width: 100%; }
+      .nav-links > li > a {
+        color: var(--text-main) !important;
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 8px;
+      }
+      .nav-links > li > a.active { color: var(--white) !important; }
+      
+      /* Mobile Accordion Dropdown Setup */
+      .nav-links li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
+      .dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--icon-teal);
+        border-radius: 0;
+        background: rgba(0,0,0,0.02);
+        padding: 4px 0;
+        margin-top: 4px;
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+      }
+      .dropdown-menu a { padding: 10px 20px; }
+
+      .stats-grid { flex-direction: column; gap: 30px; }
+      .stat-item { width: 100%; }
+      .stat-item:not(:last-child)::after { display: none; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">
-    <img src="engage_logo1.svg" alt="Engage Nepal" />
-  </div>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="who_we_are.html" class="active">Who We Are</a></li>
-    <li><a href="our_story.html">Our Story</a></li>
-    <li><a href="our_partners.html">Our Partners</a></li>
-    <li><a href="contact_us.html">Contact Us</a></li>
-  </ul>
-</nav>
+  <nav id="globalNavbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="engage_logo1.svg" alt="Engage Nepal Logo" />
+      </a>
 
-<section class="about-us">
-  <div class="section-title"><h2>ABOUT US</h2></div>
-  
-  <div class="about-text">
-    <p>Engage Nepal believes that those who are most disadvantaged in need in Nepal need not just a champion, but a partner and together we will build a future that our partners in Nepal can face hope rather than despair. We work with Nepali partners to change lives and save lives. Engage Nepal serves as a philanthropic bridge, connecting the global generosity of donors with the focused, local action of grassroots organizations across Nepal. We believe that sustainable, community-led impact happens when we empower those who know their communities best.</p>
-    <p>We do not act alone. Instead of traditional top-down aid, we identify high-impact local non-profits and provide them with the resources and capacity-building they need to succeed. By focusing on our Four Pillars - <span class="highlight-teal">Health, Education, Livelihoods, and the Environment</span>, we ensure that our interventions are holistic and address the most pressing needs of the Nepali people.</p>
-  </div>
+      <!-- Mobile Menu Hamburger Trigger -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-  <div class="stats-banner">
-    <div class="stat-box">
-      <div class="stat-num">100+</div>
-      <div class="stat-desc">Projects Completed</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-box">
-      <div class="stat-num">10+</div>
-      <div class="stat-desc">Years Of Dedication</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-box">
-      <div class="stat-num">14</div>
-      <div class="stat-desc">Local Nepali Partners</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-box">
-      <div class="stat-num">10,000+</div>
-      <div class="stat-desc">Lives Directly Impacted</div>
-    </div>
-  </div>
-</section>
-
-<section class="our-work">
-  <div class="section-title"><h2>GALLERY</h2></div>
-  
-  <div class="work-grid">
-    <img src="images/1.png" alt="Our Work 1" />
-    <img src="images/2.jpg" alt="Our Work 2" />
-    <img src="images/3.png" alt="Our Work 3" />
-    <img src="images/4.png" alt="Our Work 4" />
-    <img src="images/5.jpg" alt="Our Work 5" />
-    <img src="images/6.png" alt="Our Work 6" />
-  </div>
-
-  <div class="work-poem">
-    <p>We listen to the communities we serve.</p>
-    <p>We learn from the communities we serve.</p>
-    <p>We partner with the communities we serve</p>
-    <p class="poem-teal">And Together- We Choose Hope</p>
-    <p>Hope in the face of poverty.</p>
-    <p>Hope in the face of disaster.</p>
-    <p>Hope for the children and the families.</p>
-    <p>Hope for the future we create together</p>
-    <p><strong>We Empower Our Partners To Choose Their Path</strong></p>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-grid">
-
-    <div class="footer-brand">
-      <img src="engage_logo1.svg" alt="Engage Nepal" />
-      <div class="footer-socials">
-        <a href="#" aria-label="Facebook">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="#" aria-label="PayPal">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.36 20.3H2.87c-.28 0-.49-.24-.44-.51L5.6 1.76c.04-.24.25-.42.5-.42h6.7c2.19 0 3.84.4 4.75 1.48.86 1.02 1.1 2.22.86 3.98-.03.17-.06.33-.1.49-.8 4.34-3.66 5.86-7.3 5.86H9.17c-.47 0-.84.34-.92.8l-1.02 6.55c-.04.22-.24.38-.47.38z"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
+      <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
-        <li><a href="who_we_are.html">Who We Are</a></li>
-        <li><a href="our_story.html">Our Story</a></li>
+        <li><a href="who_we_are.html" class="active">Who We Are</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-programs-label" onclick="return false;">
+            Our Programs 
+            <img src="images/dropdown.png" alt="Toggle" class="dropdown-arrow-img" />
+          </a>
+          <div class="dropdown-menu">
+            <a href="our_programs.html#health">Health</a>
+            <a href="our_programs.html#education">Education</a>
+            <a href="our_programs.html#livelihood">Livelihood</a>
+            <a href="our_programs.html#environment">Environment</a>
+          </div>
+        </li>
         <li><a href="our_partners.html">Our Partners</a></li>
         <li><a href="contact_us.html">Contact Us</a></li>
       </ul>
     </div>
+  </nav>
 
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <div class="contact-info-block">
-        <div>info@engagenepal.org</div>
-        <div>703-401-2951</div>
-        <div>12512 Cavalier Forest Ct,<br />Bristow, Va 20139, USA</div>
+  <main>
+    <div class="hero-bg-wrapper">
+      <section class="container">
+        <div class="hero-split">
+          <div class="img-holder">
+            <img src="images/women.png" alt="Nepal Communities Group" />
+          </div>
+          <div class="hero-content">
+            <h1>A Philanthropic Bridge for Nepal's Communities</h1>
+            <p>
+              Engage Nepal believes that those who are most disadvantaged in Nepal need not just a champion, but a partner and together we will build a future that our partners in Nepal can face with hope rather than despair. We serve as a philanthropic bridge, connecting the global generosity of donors with the focused, local action of grassroots organizations across Nepal. 
+              <br><br>
+              We believe that sustainable, community-led impact happens when we empower those who know their communities best. Instead of traditional top-down aid, we identify high-impact local non-profits and provide them with the resources and capacity-building they need to succeed. We ensure that our interventions are holistic and address the most pressing needs of the Nepali people.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="stats-banner">
+      <div class="container stats-grid">
+        <div class="stat-item">
+          <h3>100+</h3>
+          <p>Projects Completed</p>
+        </div>
+        <div class="stat-item">
+          <h3>10+</h3>
+          <p>Years Of Dedication</p>
+        </div>
+        <div class="stat-item">
+          <h3>14+</h3>
+          <p>Partners</p>
+        </div>
+        <div class="stat-item">
+          <h3>10k+</h3>
+          <p>Lives Directly Impacted</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision-section">
+      <div class="container">
+        <div class="section-title-center">
+          <h2>Our Vision</h2>
+        </div>
+        <p class="vision-text">
+          We listen to the communities we serve. We learn from the communities we serve. We partner with the communities we serve.<br />
+          Hope in the face of poverty. Hope in the face of disaster. Hope for the children and the families.<br />
+          <strong>We Empower Our Partners To Choose Their Path.</strong>
+        </p>
+      </div>
+    </section>
+
+    <div class="story-bg-wrapper">
+      <section id="story" class="story-section">
+        <div class="container">
+          <div class="story-title-left">
+            <h2>Our Story</h2>
+          </div>
+
+          <div class="story-container-wrapper">
+
+            <div class="timeline-row row-1">
+              <div class="timeline-img">
+                <img src="images/aprill.png" alt="April 2015 Destruction" />
+              </div>
+              <div class="timeline-box has-top-pin">
+                <h3>April 2015: The Mountain Roared</h3>
+                <p>
+                  The earth roared, the mountain fell, and the village was gone. Not damaged, not devastated — totally gone. Disappeared, as though it had never been.
+                  <br><br>
+                  Over eight thousand lives lost, tens of thousands injured, and over two million people left homeless. A scene repeated across Nepal.
+                </p>
+              </div>
+            </div>
+
+            <svg class="row-curve-bridge bridge-1-to-2" viewBox="0 0 1100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 825,0 C 825,90 275,50 275,135" stroke="rgba(85, 157, 145, 0.6)" stroke-width="2" fill="none" />
+              <polygon points="271,130 275,140 279,130" fill="rgba(85, 157, 145, 0.6)" />
+            </svg>
+
+            <div class="timeline-row row-2">
+              <div class="timeline-box">
+                <h3>December 2015: A New Chapter</h3>
+                <p>
+                  On December 1, 2015, Ambassador Scott DeLisi, on his first day of retirement from the State Department, took over the reins of Engage Nepal.
+                  <br><br>
+                  We knew it was too much to ask families to worry about preparedness when they were struggling to put a meal on the table, pay school fees, and access life-saving healthcare.
+                </p>
+              </div>
+              <div class="timeline-img">
+                <img src="images/decemberr.png" alt="Scott DeLisi Chapter" />
+              </div>
+            </div>
+
+            <svg class="row-curve-bridge bridge-2-to-3" viewBox="0 0 1100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 275,0 C 275,90 825,50 825,135" stroke="rgba(85, 157, 145, 0.6)" stroke-width="2" fill="none" />
+              <polygon points="821,130 825,140 829,130" fill="rgba(85, 157, 145, 0.6)" />
+            </svg>
+
+            <div class="timeline-row row-3">
+              <div class="timeline-img">
+                <img src="images/since.png" alt="Mission Continues" />
+              </div>
+              <div class="timeline-box">
+                <h3>Since Then: Our Mission Continues</h3>
+                <p>
+                  Over the past ten years we have worked with our partners in Nepal on close to 100 projects in support of people who needed a helping hand. Our commitment is to the children at risk, the women who have been marginalized, and to communities living on the edge of despair as climate change threatens their way of life.
+                  <br><br>
+                  And when disaster strikes, we are there too. Today, our mission continues. Whether responding in emergencies or helping people find their way in a changing world we do what we have always done. We <span style="color: var(--red-btn); font-weight: 600;">Engage</span> <span style="color: var(--icon-teal); font-weight: 600;">Nepal</span>.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="engage_logo1.svg" alt="Engage Nepal Logo" class="footer-logo-img" />
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="who_we_are.html">Who We Are</a></li>
+            <li><a href="our_programs.html">Our Programs</a></li>
+            <li><a href="our_partners.html">Our Partners</a></li>
+            <li><a href="contact_us.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <div class="contact-info-block">
+            <div style="color: #d0e5e4; font-size: 14px;">info@engagenepal.org</div>
+            <div style="color: #d0e5e4; font-size: 14px;">703-401-2951</div>
+            <div style="color: #d0e5e4; font-size: 14px;">12512 Cavalier Forest Ct,<br />Bristow, Va 20139, USA</div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Join Us.<br />Offer the gift of Hope!</h4>
+          <a href="https://www.engagenepal.org" target="_blank" rel="noopener noreferrer" class="btn-red">
+            <img src="images/heart.png" alt="Heart Icon" style="height: 18px; width: auto; display: block;" />
+            Give the Gift of Hope
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Engage Nepal. All rights reserved.</p>
       </div>
     </div>
+  </footer>
 
-    <div class="footer-col">
-      <h4>Join Us.<br />Offer the gift of Hope!</h4>
-      <a href="#" class="btn-red">
-        <img src="donate.svg" alt="Donate" width="20" height="20" />
-        Give the Gift of Hope
-      </a>
-    </div>
+  <script>
+    // Solid scrolling tracking on fixed layout navbar
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('globalNavbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
 
-  </div>
+    // Mobile Hamburger Navigation Panel overlay trigger
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
 
-  <div class="footer-bottom">
-    <p>© 2024 Engage Nepal. All rights reserved.</p>
-  </div>
-</footer>
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // Automatically dismisses menu overlay context on deep choice selection
+    document.querySelectorAll('.nav-links a:not(.nav-programs-label)').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
 
 </body>
 </html>

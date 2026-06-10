@@ -4,25 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Partners - Engage Nepal</title>
+  
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-mono/style.css" rel="stylesheet">
   
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --text-main:        #1A1A1A;
-      --red-btn:          #850000;
-      --red-btn-hover:    #B80000;
+      --text-main:        #1A1A1A; 
+      --desc-text:        rgba(0, 0, 0, 0.651); 
+      --visit-link:       #2058DB; 
+      --red-btn:          #E44646;
+      --red-btn-hover:    #F85959;
       --icon-teal:        #00C1C9;
-      --heading-teal:     #196A5F;
-      --partners-bg:      #E4F9FF;
-      --about-bg:         #FFF8F5;
-      --footer-bg:        #006266;
+      --heading-teal:     #40D6B9; 
+      --partner-line:     #559D91; 
+      --partners-bg:      #E8FAFF; 
+      --footer-bg:        #005F5B;
       --white:            #ffffff;
-      --designation-gray: #888888;
+      --page-bg:          #F7FAFC;
       
       --font-heading: 'DM Serif Display', serif;
       --font-body: 'Geist', sans-serif;
+
+      /* ─── FLUID RESPONSIVE VARIABLES ─── */
+      --layout-max:    1400px;
+      --layout-margin: clamp(20px, 5vw, 80px);
+      --col-gutter:    clamp(20px, 4vw, 30px);
     }
 
     html { scroll-behavior: smooth; }
@@ -32,96 +42,254 @@
       font-size: 16px; 
       font-weight: 400; 
       color: var(--text-main); 
-      background: var(--white); 
+      background: var(--page-bg); 
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── NAV ─────────────────────────────────────────────────────── */
-    nav {
-      position: relative; 
-      z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 60px;
-      background: var(--white);
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: var(--layout-max);
+      margin: 0 auto;
+      padding: 0 var(--layout-margin);
     }
-    .nav-logo img { height: 60px; }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+
+    /* ─── FIXED DYNAMIC NAVIGATION BAR ─── */
+    nav {
+      position: fixed; 
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+      height: 90px; 
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
     
-    .nav-links a {
+    .nav-inner {
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      height: 100%;
+      position: relative; 
+    }
+
+    .nav-logo { 
+      display: block; 
+      text-decoration: none; 
+      width: 120px; 
+      height: 100%;
+    }
+    
+    .nav-logo img { 
+      position: absolute; 
+      top: 10px; 
+      height: clamp(65px, 8vw, 85px); 
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+      display: block; 
+      z-index: 105; 
+    }
+    .nav-logo img:hover { transform: scale(1.03); }
+
+    .nav-links { display: flex; gap: 8px; list-style: none; align-items: center; }
+    .nav-links li { position: relative; }
+    
+    .nav-links > li > a {
       color: var(--text-main); 
       text-decoration: none; 
       font-family: var(--font-body);
-      font-size: 18px; 
-      font-weight: 400; 
-      letter-spacing: 0.5px;
-      padding-bottom: 3px; 
-      transition: all 0.2s;
-      border-bottom: 2px solid transparent;
+      font-size: 15px; 
+      font-weight: 500; 
+      letter-spacing: 0.3px;
+      padding: 8px 14px; 
+      border-radius: 50px; 
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
     }
     
-    .nav-links a.active { 
-      border-bottom: 2px solid var(--icon-teal); 
-    }
-    .nav-links a:hover { 
-      border-bottom: 2px solid var(--icon-teal); 
+    .nav-links > li > a:hover { 
+      background: rgba(0,0,0,0.04);
     }
 
-    /* ─── SECTION SHARED ──────────────────────────────────────────── */
-    section { padding: 80px 60px; }
-    .section-title {
-      text-align: center; margin-bottom: 24px;
+    .nav-links > li > a.active { 
+      background: var(--icon-teal); 
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(0, 193, 201, 0.3); 
     }
+
+    .dropdown-arrow-img {
+      width: 12px;
+      height: auto;
+      margin-left: 6px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0.7;
+    }
+    
+    .nav-links li:hover .dropdown-arrow-img { transform: rotate(180deg); }
+
+    /* ─── DROPDOWN PANEL MENU ─── */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(15px);
+      background: var(--white);
+      min-width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+      z-index: 200;
+    }
+
+    .nav-links li:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(5px); 
+    }
+
+    .dropdown-menu a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
+      padding: 14px 24px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover {
+      color: var(--icon-teal);
+      background: rgba(0, 193, 201, 0.03);
+      padding-left: 30px; 
+    }
+    .dropdown-menu a::after {
+      content: "\2192";
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dropdown-menu a:hover::after { opacity: 1; transform: translateX(0); }
+    .nav-programs-label { cursor: default; }
+
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1010;
+      padding: 8px;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background-color: var(--text-main);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+
+    /* ─── CONTENT OFFSET FOR FIXED NAVBAR ─── */
+    main { padding-top: 90px; }
+
+    /* ─── HERO SECTION ─── */
+    .hero-section {
+      background: var(--partners-bg);
+      padding: clamp(40px, 6vw, 80px) 0 clamp(30px, 5vw, 60px);
+    }
+
+    .section-title {
+      text-align: center; 
+      margin-bottom: 30px;
+    }
+    
     .section-title h2 {
       font-family: var(--font-heading); 
-      font-size: 32px; font-weight: 400;
-      letter-spacing: 1px; color: var(--text-main);
-      display: inline-block; padding-bottom: 10px;
+      font-size: clamp(28px, 4vw, 36px); 
+      font-weight: 400;
+      letter-spacing: 0.5px; 
+      color: var(--text-main);
+      display: inline-block; 
+      padding-bottom: 8px;
       border-bottom: 3px solid var(--heading-teal); 
+      text-transform: uppercase;
     }
 
-    /* ─── OUR PARTNERS PAGE SPECIFIC ──────────────────────────────── */
     .partners-intro {
-      text-align: center;
+      text-align: center; 
+      width: 100%;
       max-width: 1000px;
-      margin: 0 auto 60px;
-      font-size: 16px;
+      margin: 0 auto;
+      font-size: clamp(15px, 2vw, 16px);
       line-height: 1.8;
-      color: #555555;
+      color: var(--text-main);
+    }
+
+    /* ─── PARTNERS GRID SECTION ─── */
+    .grid-section {
+      padding: clamp(40px, 6vw, 70px) 0 clamp(50px, 7vw, 90px);
     }
 
     .partners-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: var(--col-gutter); 
     }
 
     .partner-card {
       background: var(--white);
-      border: 1px solid #EAEAEA;
       border-radius: 8px;
-      padding: 30px 24px;
+      padding: 40px 24px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      transition: box-shadow 0.2s;
+      align-items: flex-start;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); 
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
     }
     
     .partner-card:hover {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+      transform: translateY(-5px);
     }
 
     .partner-logo {
-      height: 70px;
+      height: 95px; 
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px; 
+      padding-bottom: 20px; 
       width: 100%;
+      border-bottom: 2px solid var(--partner-line); 
     }
 
     .partner-logo img {
-      max-height: 100%;
+      max-height: 75px; 
       max-width: 100%;
       object-fit: contain;
     }
@@ -130,293 +298,451 @@
       font-family: var(--font-body);
       font-size: 16px;
       font-weight: 600;
-      text-align: center;
+      text-align: center; 
       margin-bottom: 16px;
-      color: var(--text-main);
+      color: var(--text-main); 
       width: 100%;
-      padding-bottom: 16px;
-      border-bottom: 2.5px solid #559D91;
     }
 
     .partner-desc {
       font-size: 14px;
       line-height: 1.6;
-      color: #444444;
+      color: var(--desc-text); 
       margin-bottom: 24px;
-      flex-grow: 1; /* Pushes the link to the bottom */
-      text-align: left;
+      flex-grow: 1; 
+      text-align: left; 
       width: 100%;
     }
 
     .partner-link {
-      color: #3b82f6; /* Blue matching the design */
+      color: var(--visit-link); 
       font-size: 14px;
       font-weight: 500;
       text-decoration: underline;
-      text-decoration-color: transparent;
+      text-decoration-color: var(--visit-link);
       transition: all 0.2s;
       align-self: flex-start;
     }
 
     .partner-link:hover {
-      text-decoration-color: currentColor;
+      opacity: 0.8;
     }
 
-    /* ─── BUTTONS ─────────────────────────────── */
+    /* ─── BUTTONS ─── */
     .btn-red {
-      box-sizing: border-box;
-      display: inline-flex; align-items: center; justify-content: center;
-      height: 43px; 
-      padding: 0 20px; 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center;
+      height: 44px; 
+      padding: 0 24px; 
       font-family: var(--font-body); 
       font-size: 14px; 
       font-weight: 500; 
-      border-radius: 4px; cursor: pointer; text-decoration: none;
-      transition: all 0.2s;
+      border-radius: 4px; 
+      cursor: pointer; 
+      text-decoration: none; 
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
       gap: 10px;
-      background: var(--red-btn); color: var(--white);
+      background: var(--red-btn); 
+      color: var(--white); 
       border: none; 
+      white-space: nowrap;
     }
     .btn-red img { display: block; }
-    .btn-red:hover { background: var(--red-btn-hover); transform: translateY(-1px); }
+    .btn-red:hover { 
+      background: var(--red-btn-hover); 
+      transform: translateY(-3px); 
+      box-shadow: 0 6px 15px rgba(228, 70, 70, 0.3);
+    }
 
-    /* ─── FOOTER ──────────────────────────────── */
+    /* ─── FOOTER ─── */
     footer {
-      background: var(--footer-bg); color: var(--white);
-      padding: 60px 60px 40px;
+      background: var(--footer-bg); 
+      color: var(--white);
+      padding: clamp(50px, 6vw, 80px) 0 40px;
       font-family: var(--font-body);
     }
     .footer-grid {
-      display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-      gap: 40px; max-width: 1100px; margin: 0 auto 40px;
+      display: grid; 
+      grid-template-columns: 2fr 1fr 1.2fr 1.8fr;
+      gap: var(--col-gutter); 
+      margin-bottom: 40px;
     }
-    .footer-brand img { max-width: 180px; height: auto; object-fit: contain; margin-bottom: 20px; display: block; }
-    .footer-socials { display: flex; gap: 16px; margin-top: 4px; }
+    
+    .footer-logo-img { max-width: 100%; height: 60px; margin-bottom: 24px; display: block; object-fit: contain; }
+    
+    .footer-socials { display: flex; gap: 12px; }
     
     .footer-socials a {
-      width: 40px; height: 40px; border: 1.5px solid rgba(255,255,255,0.5);
+      width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,0.3);
       border-radius: 4px; display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-size: 18px; text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+      color: var(--white); text-decoration: none;
+      transition: all 0.2s ease;
     }
     .footer-socials a:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    
     .footer-col h4 {
-      font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
-      margin-bottom: 24px; color: var(--white);
-      line-height: 1.4;
+      font-size: 16px; 
+      font-weight: 600; 
+      letter-spacing: 0.5px;
+      margin-bottom: 24px; 
+      color: var(--white);
     }
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 12px; }
     .footer-col ul li a {
-      color: var(--white); text-decoration: none; font-size: 16px;
-      transition: opacity 0.2s;
+      color: #d0e5e4; 
+      text-decoration: none; 
+      font-size: 14px;
+      transition: color 0.2s;
     }
-    .footer-col ul li a:hover { opacity: 0.8; }
-    .footer-col p { font-size: 16px; color: var(--white); line-height: 1.8; }
+    .footer-col ul li a:hover { color: var(--white); }
     
     .contact-info-block {
       display: flex;
       flex-direction: column;
-      gap: 16px; 
-      margin-bottom: 28px;
+      gap: 12px; 
     }
-    
-    .footer-col .btn-red { margin-top: 16px; }
     
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      padding-top: 24px; text-align: center; max-width: 1100px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px; 
+      text-align: center;
     }
-    .footer-bottom p { font-size: 14px; color: var(--white); opacity: 0.7; }
+    .footer-bottom p { font-size: 14px; color: #d0e5e4; opacity: 0.7; }
 
-    /* ─── RESPONSIVE ──────────────────────────────────────────────── */
-    @media (max-width: 1100px) {
-      .partners-grid { grid-template-columns: repeat(3, 1fr); }
+    /* ─── BREAKPOINTS SYSTEM ─── */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      section { padding: 60px 24px; }
-      .partners-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .partners-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      
+      /* Mobile Menu Drawer Overlay */
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 24px 40px;
+        gap: 16px;
+        box-shadow: -4px 0 30px rgba(0,0,0,0.1);
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+      
+      .nav-links.open { right: 0; }
+      .nav-links > li { width: 100%; }
+      .nav-links > li > a {
+        color: var(--text-main) !important;
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 8px;
+      }
+      .nav-links > li > a.active { color: var(--white) !important; }
+      
+      /* Mobile Accordion Dropdown Setup */
+      .nav-links li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
+      .dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--icon-teal);
+        border-radius: 0;
+        background: rgba(0,0,0,0.02);
+        padding: 4px 0;
+        margin-top: 4px;
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+      }
+      .dropdown-menu a { padding: 10px 20px; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">
-    <img src="engage_logo1.svg" alt="Engage Nepal" />
+<nav id="globalNavbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="engage_logo1.svg" alt="Engage Nepal Logo" />
+    </a>
+
+    <!-- Mobile Menu Hamburger Trigger -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="who_we_are.html">Who We Are</a></li>
+      <li class="nav-dropdown">
+        <a href="#" class="nav-programs-label" onclick="return false;">
+          Our Programs 
+          <img src="images/dropdown.png" alt="Toggle" class="dropdown-arrow-img" />
+        </a>
+        <div class="dropdown-menu">
+          <a href="our_programs.html#health">Health</a>
+          <a href="our_programs.html#education">Education</a>
+          <a href="our_programs.html#livelihood">Livelihood</a>
+          <a href="our_programs.html#environment">Environment</a>
+        </div>
+      </li>
+      <li><a href="our_partners.html" class="active">Our Partners</a></li>
+      <li><a href="contact_us.html">Contact Us</a></li>
+    </ul>
   </div>
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="who_we_are.html">Who We Are</a></li>
-    <li><a href="our_story.html">Our Story</a></li>
-    <li><a href="our_partners.html" class="active">Our Partners</a></li>
-    <li><a href="contact_us.html">Contact Us</a></li>
-  </ul>
 </nav>
 
-<section>
-  <div class="section-title">
-    <h2>OUR PARTNERS</h2>
-  </div>
-  <p class="partners-intro">
-    Engage Nepal works alongside a dedicated network of partners who share its commitment to creating lasting change in Nepal. Through these collaborations, the organization delivers impactful programs in education, healthcare, livelihood development, and disaster response. Together, they empower vulnerable communities with the resources, support, and hope needed to build a better future.
-  </p>
-
-  <div class="partners-grid">
-    
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/binayatara.png" alt="Binayatara Foundation" /></div>
-      <h3 class="partner-title">Binayatara Foundation</h3>
-      <p class="partner-desc">Binayatara Foundation was established in 2018 as a Cancer Care Center focusing the cancer patients of Madhesh and neighboring states of Nepal. It is a not for profit social organization.</p>
-      <a href="#" class="partner-link">Visit Website</a>
+<main>
+  <header class="hero-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>OUR PARTNERS</h2>
+      </div>
+      <p class="partners-intro">
+        Engage Nepal works alongside a dedicated network of partners who share its commitment to creating lasting change in Nepal. Through these collaborations, the organization delivers impactful programs in education, healthcare, livelihood development, and disaster response. Currently, we are focusing our efforts to build these organizations into a connected network committed to transparency, accountability, and impact-focused programming. Together, we empower vulnerable communities with the resources, support, and hope needed to build a better future.
+      </p>
     </div>
+  </header>
 
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/cil.png" alt="CIL-Kathmandu" /></div>
-      <h3 class="partner-title">CIL-Kathmandu</h3>
-      <p class="partner-desc">CIL Kathmandu is a non-profit, non-political, self-help organization run by and for persons with disabilities that promotes concept of Independent Living.</p>
-      <a href="#" class="partner-link">Visit Website</a>
+  <section class="grid-section">
+    <div class="container">
+      <div class="partners-grid">
+        
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/binayatara.png" alt="Binayatara Foundation Logo" />
+          </div>
+          <h3 class="partner-title">Binayatara Foundation</h3>
+          <p class="partner-desc">Binayatara Foundation was established in 2018 as a Cancer Care Center focusing the cancer patients of Madhesh and neighboring states of Nepal. It is a not for profit social organization.</p>
+          <a href="https://binaytara.org" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+         <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/la chaine.png" alt="Chaîne de l'Espoir Logo" />
+          </div>
+          <h3 class="partner-title">Chaine de l'Espoir</h3>
+          <p class="partner-desc">Founded in 1994 by professor and cardiac surgeon Alain Deloche, La Chaîne de l’Espoir (France) provides children in countries that don't have technical and human capital to treat them with medical and surgical care.</p>
+          <a href="https://www.chainedelespoir.org" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/cil.png" alt="CIL-Kathmandu Logo" />
+          </div>
+          <h3 class="partner-title">CIL-Kathmandu</h3>
+          <p class="partner-desc">CIL Kathmandu is a non-profit, non-political, self-help organization run by and for persons with disabilities that promotes concept of Independent Living.</p>
+          <a href="https://cil.org.np" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/fusion.png" alt="Fusion Nepal Logo" />
+          </div>
+          <h3 class="partner-title">Fusion Nepal</h3>
+          <p class="partner-desc">Fusion Nepal is a not for profit organization which is registered in Nepal government with the theme; "Build People Up, Help People Grow because People Matter."</p>
+          <a href="#" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/global.png" alt="Global Peace Foundation Logo" />
+          </div>
+          <h3 class="partner-title">Global Peace Foundation</h3>
+          <p class="partner-desc">Founded in 2009, Global Peace Foundation is an international non-sectarian, non-partisan, non-profit organization, that promotes an innovative, values-based approach to peace building, guided by the vision of One Family under God.</p>
+          <a href="https://www.globalpeace.org" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/gorkha.png" alt="Gorkha Foundation Logo" />
+          </div>
+          <h3 class="partner-title">Gorkha Foundation</h3>
+          <p class="partner-desc">Gorkha Foundation is a non-profit, grassroots organization whose purpose is to support initiatives that reduce poverty and inequality by making sustainable improvements to the living conditions of the poor and marginalized in the Gorkha district of Nepal.</p>
+          <a href="http://gorkhafoundation.org" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/homenet.png" alt="Home Enterprise Forum Nepal Logo" />
+          </div>
+          <h3 class="partner-title">Home Enterprise Forum Nepal</h3>
+          <p class="partner-desc">HNN is a non-profit social organization. It was formed by the senior artisans of various skills and arts throughout the country. It's a part of HomeNet Nepal which has been active for last 27 years towards promoting social protection of people live in marginalized communities in Nepal.</p>
+          <a href="https://www.hnsa.org.in" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/ambulance.png" alt="Nepal Ambulance Service Logo" />
+          </div>
+          <h3 class="partner-title">Nepal Ambulance Service</h3>
+          <p class="partner-desc">Nepal Ambulance Service is a not for profit social organization dedicated to improving the pre-hospital response in Nepal through the provision of emergency medical service in collaboration with various organizations which are crucial component of any emergency or disaster response.</p>
+          <a href="https://www.nepalambulanceservice.org" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/philanthropy.png" alt="Nepal Center for Philanthropy Development Logo" />
+          </div>
+          <h3 class="partner-title">Nepal Center for Philanthropy Development</h3>
+          <p class="partner-desc">NCPD is a group of highly driven social sector professionals from across the world who are tied by one common thread: our love for the beautiful country Nepal-home to the juggernaut Mount Everest, the warmest of communities, rich cultural heritage and diversity.</p>
+          <a href="https://ncpd.org.np" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/youth.png" alt="Nepal Youth Foundation Nepal Logo" />
+          </div>
+          <h3 class="partner-title">Nepal Youth Foundation Nepal</h3>
+          <p class="partner-desc">Since their founding in 1990, NYF has supported more than 110,000 children and youth in Nepal. NYF's primary focus is increasing access to high-quality Education, Shelter, and Freedom. We also provide Emergency Relief when needed, responding quickly and effectively.</p>
+          <a href="https://nepalyouthfoundation.org" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/korea.png" alt="Nepal Korea Friendship Municipality Hospital Logo" />
+          </div>
+          <h3 class="partner-title">Nepal Korea Friendship Municipality Hospital</h3>
+          <p class="partner-desc">Nepal Korea Friendship Municipality Hospital was established in 1999, in the name of Kyung Hee Nepal Health Center with the purpose of providing various health services especially to the people of Bhaktapur and adjoining districts.</p>
+          <a href="https://nkfmh.org.np" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/rotary.png" alt="Rotary Club New Road City Logo" />
+          </div>
+          <h3 class="partner-title">Rotary Club New Road City</h3>
+          <p class="partner-desc">Rotary Club New Road City was established in May 2004 under the umbrella of Rotary Club District 325 in Nepal. It is one of the few most reputed organizations for humanitarian and philanthropic services for needy people. It comprises of young and enthusiastic members.</p>
+          <a href="https://rotarydistrict3292.org.np" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/sagarmatha.png" alt="Sagarmatha Children Home Logo" />
+          </div>
+          <h3 class="partner-title">Sagarmatha Children Home</h3>
+          <p class="partner-desc">Sagarmatha Children Home is a non-profit social organization established in the year 2003 which provides home for the abandoned homeless and orphan children of Nepal. It was established with the initiation of a group of people who strongly believe their obligation towards society.</p>
+          <a href="http://www.childrennepal.org.np" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/thelp.png" alt="Trans Himalayan Environment Livelihood Program Logo" />
+          </div>
+          <h3 class="partner-title">Trans Himalayan Environment Livelihood Program</h3>
+          <p class="partner-desc">Trans Himalayan Environment Livelihood Program aims to extend its programs beyond and across the Northern belt that encompasses Sikkim, Bhutan, Ladhaikh, and Tibet, which share similar environment and culture. T-Help Nepal is a non-political, non-profit, and non-governmental organization.</p>
+          <a href="#" class="partner-link">Visit Website</a>
+        </div>
+
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="images/TPN.jpg" alt="The Partners Nepal Logo" />
+          </div>
+          <h3 class="partner-title">The Partners Nepal</h3>
+          <p class="partner-desc">The Partners Nepal (TPN) is a local non-governmental organization (NGO) established in 2012. It is dedicated to serving mountain communities through the conservation of fragile alpine ecosystems, preserving cultural heritage, and running livelihood programs in regions like Solukhumbu and Langtang.</p>
+          <a href="https://thepartnersnepal.org" target="_blank" rel="noopener noreferrer" class="partner-link">Visit Website</a>
+        </div>
+
+      </div>
     </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/fusion.png" alt="Fusion Nepal" /></div>
-      <h3 class="partner-title">Fusion Nepal</h3>
-      <p class="partner-desc">Fusion Nepal is a not for profit organization which is registered in Nepal government with the theme; "Build People Up, Help People Grow because People Matter."</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/global.png" alt="Global Peace Foundation" /></div>
-      <h3 class="partner-title">Global Peace Foundation</h3>
-      <p class="partner-desc">Founded in 2009, Global Peace Foundation is an international non-sectarian, non-partisan, non-profit organization, that promotes an innovative, values-based approach to peace building, guided by the vision of One Family under God.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/gorkha.png" alt="Gorkha Foundation" /></div>
-      <h3 class="partner-title">Gorkha Foundation</h3>
-      <p class="partner-desc">Gorkha Foundation is a non-profit, grassroots organization whose purpose is to support initiatives that reduce poverty and inequality by making sustainable improvements to the living conditions of the poor and marginalized in the Gorkha district of Nepal.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/homenet.png" alt="Home Enterprise Forum Nepal" /></div>
-      <h3 class="partner-title">Home Enterprise Forum Nepal</h3>
-      <p class="partner-desc">Hnn is a non-profit social organization. It was formed by the senior artisans of various skills and arts throughout the country. It's a part of HomeNet Nepal which has been active for last 27 years towards promoting social protection of people live in marginalized communities in Nepal.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/ambulance.png" alt="Nepal Ambulance Service" /></div>
-      <h3 class="partner-title">Nepal Ambulance Service</h3>
-      <p class="partner-desc">Nepal Ambulance Service is a not for profit social organization dedicated to improving the pre-hospital response in Nepal through the provision of emergency medical service in collaboration with various organizations which are crucial component of any emergency or disaster response.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/philanthropy.png" alt="Nepal Center for Philanthropy Development" /></div>
-      <h3 class="partner-title">Nepal Center for Philanthropy Development</h3>
-      <p class="partner-desc">Nepal Center for Philanthropy and Development (NCP&D) is a group of highly driven social sector professionals from across the world who are tied by one common thread: our love for the beautiful country Nepal-home to the juggernaut Mount Everest, the warmest of communities, rich cultural heritage and diversity.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/youth.png" alt="Nepal Youth Foundation Nepal" /></div>
-      <h3 class="partner-title">Nepal Youth Foundation Nepal</h3>
-      <p class="partner-desc">The Nepal Youth Foundation is a non-profit organization. Since our founding in 1990, NYF has supported more than 110,000 children and youth in Nepal. NYF's primary focus is increasing access to high-quality Education, Shelter, and Freedom. We also provide Emergency Relief when needed, responding quickly and effectively to earthquakes, floods and other humanitarian crises.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/korea.png" alt="Nepal Korea Friendship Municipality Hospital" /></div>
-      <h3 class="partner-title">Nepal Korea Friendship Municipality Hospital</h3>
-      <p class="partner-desc">Nepal Korea Friendship Municipality Hospital was established in 1999, in the name of Kyung Hee Nepal Health Center with the purpose of providing various health services especially to the people of Bhaktapur and adjoining districts.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/rotary.png" alt="Rotary Club New Road City" /></div>
-      <h3 class="partner-title">Rotary Club New Road City</h3>
-      <p class="partner-desc">Rotary Club New Road City was established in May 2004 under the umbrella of Rotary Club District 325 in Nepal. It is one of the few most reputed organizations for humanitarian and philanthropic services for needy people. It comprises of young and enthusiastic male and female members of the society within the age group of 18-30.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/sagarmatha.png" alt="Sagarmatha Children Home" /></div>
-      <h3 class="partner-title">Sagarmatha Children Home</h3>
-      <p class="partner-desc">Sagarmatha Children Home is a non-profit social organization established in the year 2003 which provides home for the abandoned homeless and orphan children of Nepal. It was established with this understanding and through the initiation of a group of people who strongly believe their obligation towards society, in general, and towards thousands of children who are forced to live in difficult circumstances.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-    <div class="partner-card">
-      <div class="partner-logo"><img src="images/thelp.png" alt="Trans Himalayan Environment Livelihood Program" /></div>
-      <h3 class="partner-title">Trans Himalayan Environment Livelihood Program</h3>
-      <p class="partner-desc">Trans Himalayan Environment Livelihood Program aims to extend its programs beyond and across the Northern belt that encompasses Sikkim, Bhutan, Ladhaikh, and Tibet, which share similar environment and culture. T-Help Nepal is a non-political, non-profit, and non-governmental organization.</p>
-      <a href="#" class="partner-link">Visit Website</a>
-    </div>
-
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
-  <div class="footer-grid">
+  <div class="container">
+    <div class="footer-grid">
 
-    <div class="footer-brand">
-      <img src="engage_logo1.svg" alt="Engage Nepal" />
-      <div class="footer-socials">
-        <a href="#" aria-label="Facebook">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="#" aria-label="PayPal">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M7.36 20.3H2.87c-.28 0-.49-.24-.44-.51L5.6 1.76c.04-.24.25-.42.5-.42h6.7c2.19 0 3.84.4 4.75 1.48.86 1.02 1.1 2.22.86 3.98-.03.17-.06.33-.1.49-.8 4.34-3.66 5.86-7.3 5.86H9.17c-.47 0-.84.34-.92.8l-1.02 6.55c-.04.22-.24.38-.47.38z"/></svg>
+      <div class="footer-brand">
+        <img src="engage_logo1.svg" alt="Engage Nepal Logo" class="footer-logo-img" />
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="who_we_are.html">Who We Are</a></li>
+          <li><a href="our_programs.html">Our Programs</a></li>
+          <li><a href="our_partners.html">Our Partners</a></li>
+          <li><a href="contact_us.html">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-info-block">
+          <div style="color: #d0e5e4; font-size: 14px;">info@engagenepal.org</div>
+          <div style="color: #d0e5e4; font-size: 14px;">703-401-2951</div>
+          <div style="color: #d0e5e4; font-size: 14px;">12512 Cavalier Forest Ct,<br />Bristow, Va 20139, USA</div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Join Us.<br />Offer the gift of Hope!</h4>
+        <a href="https://www.engagenepal.org" target="_blank" rel="noopener noreferrer" class="btn-red">
+          <img src="images/heart.png" alt="Heart Icon" style="height: 18px; width: auto; display: block;" />
+          Give the Gift of Hope
         </a>
       </div>
+
     </div>
 
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="who_we_are.html">Who We Are</a></li>
-        <li><a href="our_story.html">Our Story</a></li>
-        <li><a href="our_partners.html">Our Partners</a></li>
-        <li><a href="contact_us.html">Contact Us</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <p>© 2026 Engage Nepal. All rights reserved.</p>
     </div>
-
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <div class="contact-info-block">
-        <div>info@engagenepal.org</div>
-        <div>703-401-2951</div>
-        <div>12512 Cavalier Forest Ct,<br />Bristow, Va 20139, USA</div>
-      </div>
-    </div>
-
-    <div class="footer-col">
-      <h4>Join Us.<br />Offer the gift of Hope!</h4>
-      <a href="#" class="btn-red">
-        <img src="donate.svg" alt="Donate" width="20" height="20" />
-        Give the Gift of Hope
-      </a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2024 Engage Nepal. All rights reserved.</p>
   </div>
 </footer>
+
+<script>
+  // Sticky navigation scrolling bar visibility transitions
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('globalNavbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile Drawer Navigation Panel logic
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+
+  // Automatically structural backdrop collapse on option selection
+  document.querySelectorAll('.nav-links a:not(.nav-programs-label)').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
 
 </body>
 </html>

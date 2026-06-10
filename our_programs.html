@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Programs - Engage Nepal</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-mono/style.css" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text-main:        #1A1A1A; 
+      --desc-text:        rgba(0, 0, 0, 0.651); 
+      --visit-link:       #2058DB; 
+      --red-btn:          #850000;
+      --icon-teal:        #00C1C9;
+      --heading-teal:     #40D6B9; 
+      --partners-bg:      #E8FAFF; 
+      --footer-bg:        #0d6964;
+      --white:            #ffffff;
+      --page-bg:          #ffffff; 
+      --number-bg:        #FCEAE9; 
+      
+      /* Specific color matched from your requested image */
+      --read-more-green:  #2D6156;
+      
+      --font-heading: 'DM Serif Display', serif;
+      --font-body: 'Geist', sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+
+      /* ─── FLUID RESPONSIVE VARIABLES ─── */
+      --layout-max:    1400px;
+      --layout-margin: clamp(20px, 5vw, 80px);
+      --col-gutter:    clamp(24px, 5vw, 60px);
+    }
+
+    html { scroll-behavior: smooth; }
+    
+    body { 
+      font-family: var(--font-body); 
+      font-size: 16px; 
+      font-weight: 400; 
+      color: var(--text-main); 
+      background: var(--page-bg); 
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: var(--layout-max);
+      margin: 0 auto;
+      padding: 0 var(--layout-margin);
+    }
+
+    /* ─── STICKY DYNAMIC NAVIGATION BAR ─── */
+    nav {
+      position: fixed; 
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--white);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+      height: 90px; 
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    
+    .nav-inner {
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      height: 100%;
+      position: relative; 
+    }
+
+    .nav-logo { 
+      display: block; 
+      text-decoration: none; 
+      width: 120px; 
+      height: 100%;
+    }
+    
+    .nav-logo img { 
+      position: absolute; 
+      top: 10px; 
+      height: clamp(65px, 8vw, 85px); 
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+      display: block; 
+      z-index: 105; 
+    }
+    .nav-logo img:hover { transform: scale(1.03); }
+
+    .nav-links { display: flex; gap: 8px; list-style: none; align-items: center;}
+    .nav-links li { position: relative; }
+    
+    .nav-links > li > a {
+      color: var(--text-main); 
+      text-decoration: none; 
+      font-family: var(--font-body);
+      font-size: 15px; 
+      font-weight: 500; 
+      letter-spacing: 0.3px;
+      padding: 8px 14px; 
+      border-radius: 50px; 
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+    
+    .nav-links > li > a:hover { 
+      background: rgba(0,0,0,0.04);
+      color: var(--text-main);
+    }
+
+    .nav-links > li > a.active { 
+      background: var(--icon-teal); 
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(0, 193, 201, 0.3); 
+    }
+
+    .dropdown-arrow-img {
+      width: 12px;
+      height: auto;
+      margin-left: 6px;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
+      opacity: 0.7;
+    }
+    
+    .nav-links a.active .dropdown-arrow-img { 
+      opacity: 1; 
+      filter: brightness(0) invert(1);
+    }
+    
+    .nav-links li:hover .dropdown-arrow-img { transform: rotate(180deg); }
+
+    /* ─── DROPDOWN PANEL MENU ─── */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(15px);
+      background: var(--white);
+      min-width: 220px;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+      z-index: 200;
+    }
+
+    .nav-links li:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(5px); 
+    }
+
+    .dropdown-menu a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
+      padding: 14px 24px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .dropdown-menu a:last-child { border-bottom: none; }
+
+    .dropdown-menu a:hover {
+      color: var(--icon-teal);
+      background: rgba(0, 193, 201, 0.03);
+      padding-left: 30px; 
+    }
+    .dropdown-menu a::after {
+      content: "→";
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dropdown-menu a:hover::after { opacity: 1; transform: translateX(0); }
+
+    .dropdown-menu a.sub-active {
+      color: var(--icon-teal);
+      background: rgba(0, 193, 201, 0.05);
+      padding-left: 30px;
+    }
+    .dropdown-menu a.sub-active::after { opacity: 1; transform: translateX(0); }
+    .nav-programs-label { cursor: default; }
+
+    /* Mobile Menu Toggle Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1010;
+      padding: 8px;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background-color: var(--text-main);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+
+    /* ─── CONTENT OFFSET FOR FIXED NAVBAR ─── */
+    main { padding-top: 90px; }
+
+    /* ─── HERO SECTION ─── */
+    .hero-section {
+      background: var(--partners-bg);
+      padding: clamp(40px, 6vw, 80px) 0 clamp(30px, 5vw, 60px);
+    }
+
+    .section-title {
+      text-align: center; 
+      margin-bottom: 30px;
+    }
+    
+    .section-title h2 {
+      font-family: var(--font-heading); 
+      font-size: clamp(26px, 4vw, 36px); 
+      font-weight: 400;
+      letter-spacing: 0.5px; 
+      color: var(--text-main);
+      display: inline-block; 
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--heading-teal); 
+      text-transform: uppercase;
+    }
+
+    .programs-intro {
+      text-align: center; 
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      font-size: clamp(15px, 2vw, 16px);
+      line-height: 1.8;
+      color: var(--desc-text);
+    }
+
+    /* ─── TWO-WAY ULTRA-SWIFT SCROLL ENTRY ANIMATIONS ─── */
+    .program-tab { display: none; }
+    .program-tab.active { display: block; }
+    
+    .reveal-row {
+      opacity: 0;
+      transform: translate3d(-35px, 0, 0);
+      filter: blur(4px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity, filter;
+    }
+    
+    .reveal-row.revealed {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0px);
+    }
+
+    .program-row {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: var(--col-gutter);
+      align-items: center;
+      margin-bottom: clamp(60px, 8vw, 100px); 
+    }
+
+    .program-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 24px;
+    }
+
+    .program-number {
+      background-color: var(--number-bg);
+      color: var(--text-main);
+      font-weight: 400;
+      font-size: 16px;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      flex-shrink: 0;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .program-row:hover .program-number {
+      transform: scale(1.08) rotate(-4deg);
+    }
+
+    .program-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: clamp(20px, 3vw, 24px);
+      color: #003046;
+      border-bottom: 3px solid var(--heading-teal);
+      padding-bottom: 5px;
+      line-height: 1.2;
+    }
+
+    .program-desc {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--desc-text);
+      margin-bottom: 30px;
+    }
+
+    .program-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 0;
+    }
+
+    .stat-box { 
+      display: flex; 
+      flex-direction: column; 
+      padding-right: clamp(16px, 3vw, 32px);
+      margin-right: clamp(16px, 3vw, 32px);
+      border-right: 1px solid #D2D5DA;
+    }
+    
+    .stat-box:last-child {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    .stat-num {
+      font-family: var(--font-mono); 
+      font-weight: 700;
+      font-size: clamp(24px, 4vw, 32px); 
+      color: #000000;
+      line-height: 1.2;
+      display: inline-block;
+    }
+
+    .stat-label {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 14px;
+      color: #0E9C90;
+      text-transform: uppercase;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .program-image {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      background-color: #f0f0f0;
+      width: 100%;
+    }
+
+    .program-image img {
+      width: 100%;
+      height: 300px; 
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .program-row:hover .program-image img { transform: scale(1.04); }
+
+    /* ─── READ MORE BUTTON DESIGN ─── */
+    .read-more-container {
+      text-align: center;
+      margin-top: -20px;
+      margin-bottom: 80px;
+    }
+
+    .read-more-container.hidden { display: none !important; }
+
+    .read-more-link {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 16px; 
+      font-weight: 400; 
+      color: var(--read-more-green);
+      letter-spacing: -0.5px;
+      transition: opacity 0.2s;
+    }
+    
+    .read-more-link .chevron {
+      margin-left: 16px;
+      display: inline-block;
+      font-weight: 300;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .read-more-link:hover { opacity: 0.9; }
+    .read-more-link:hover .chevron { transform: translateX(6px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--footer-bg); 
+      color: var(--white);
+      padding: clamp(50px, 6vw, 80px) 0 40px;
+      font-family: var(--font-body);
+    }
+    .footer-grid {
+      display: grid; 
+      grid-template-columns: 2fr 1fr 1.2fr 1.8fr;
+      gap: clamp(20px, 4vw, 40px); 
+      margin: 0 auto 40px;
+    }
+    .footer-logo-img { max-width: 100%; height: 60px; margin-bottom: 24px; display: block; object-fit: contain; }
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-socials a {
+      width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      color: var(--white); text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .footer-socials a:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+    .footer-col h4 {
+      font-size: 16px; font-weight: 600; letter-spacing: 0.5px;
+      margin-bottom: 24px; color: var(--white);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a {
+      color: #d0e5e4; text-decoration: none; font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+    
+    .contact-info-block { display: flex; flex-direction: column; gap: 12px; }
+    
+    .btn-red {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 44px; padding: 0 24px; font-family: var(--font-body); font-size: 14px; font-weight: 500; 
+      border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); gap: 10px;
+      background: #f04d4d; color: var(--white); border: none; white-space: nowrap;
+    }
+    .btn-red:hover { background: #d93d3d; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(240, 77, 77, 0.3); }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px; text-align: center;
+    }
+    .footer-bottom p { font-size: 14px; color: #d0e5e4; opacity: 0.7; }
+
+    /* ─── RESPONSIVE BREAKPOINTS ─── */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .program-row { gap: 40px; }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      
+      /* Mobile Menu Drawer Overlay */
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 24px 40px;
+        gap: 16px;
+        box-shadow: -4px 0 30px rgba(0,0,0,0.1);
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+      
+      .nav-links.open { right: 0; }
+      .nav-links > li { width: 100%; }
+      .nav-links > li > a {
+        color: var(--text-main) !important;
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 8px;
+      }
+      .nav-links > li > a.active { color: var(--white) !important; }
+      
+      /* Mobile Accordion Dropdown Setup */
+      .nav-links li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
+      .dropdown-menu {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--icon-teal);
+        border-radius: 0;
+        background: rgba(0,0,0,0.02);
+        padding: 4px 0;
+        margin-top: 4px;
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+      }
+      .dropdown-menu a { padding: 10px 20px; }
+
+      .program-row { grid-template-columns: 1fr; gap: 30px; }
+      .program-image { order: -1; } /* Image shifts above text on small screens */
+      .program-image img { height: 220px; }
+      
+      .stat-box { border-right: none; margin-right: 0; padding-right: 0; width: 50%; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="globalNavbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="engage_logo1.svg" alt="Engage Nepal Logo" />
+    </a>
+
+    <!-- Mobile Menu Hamburger Trigger -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="who_we_are.html">Who We Are</a></li>
+      
+      <li class="nav-dropdown">
+        <a href="#" class="active nav-programs-label" onclick="return false;">
+          Our Programs 
+          <img src="images/dropdown.png" alt="Toggle" class="dropdown-arrow-img" />
+        </a>
+        <div class="dropdown-menu">
+          <a href="#health" onclick="showCategory('health')">Health</a>
+          <a href="#education" onclick="showCategory('education')">Education</a>
+          <a href="#livelihood" onclick="showCategory('livelihood')">Livelihood</a>
+          <a href="#environment" onclick="showCategory('environment')">Environment</a>
+        </div>
+      </li>
+      
+      <li><a href="our_partners.html">Our Partners</a></li>
+      <li><a href="contact_us.html">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <header class="hero-section">
+    <div class="container">
+      <div class="section-title">
+        <h2 id="dynamic-page-title">OUR PROGRAMS - HEALTH</h2>
+      </div>
+      <p class="programs-intro" id="dynamic-page-intro">
+        Our healthcare initiatives refuse to treat emergency response as a temporary endpoint. We focus on identifying deep-seated structural vulnerabilities—such as the absence of pediatric intensive care or geographical barriers to cancer screenings—and collaborate with local experts to build permanent, high-impact medical infrastructure that saves lives during and after crises.
+      </p>
+    </div>
+  </header>
+
+  <section class="programs-list">
+    <div class="container">
+      
+      <div id="tab-health" class="program-tab active">
+        
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">1</div>
+              <h3 class="program-title">Free Health Camp For Community Women</h3>
+            </div>
+            <p class="program-desc">
+              In collaboration with Engage Nepal, Binayatara Foundation has helped cancer patients in Madhesh region who had to travel more than 8 hours by bus with difficulties to the nearest cancer hospital before to be able to access cutting-edge cancer care close to home from care providers who understand their culture and speak their language.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num" data-target="1500">0</span><span class="stat-label">TOTAL BENEFICIARIES</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="1400">0</span><span class="stat-label">WOMEN</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="50">0</span><span class="stat-label">MEN</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="50">0</span><span class="stat-label">CHILDREN</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/madhesh.png" alt="Health Camp" />
+          </div>
+        </div>
+
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">2</div>
+              <h3 class="program-title">Emergency Medical Camp for flood-affected families</h3>
+            </div>
+            <p class="program-desc">
+              Fusion Nepal, in collaboration with Engage Nepal, successfully organized an emergency medical camp for flood-affected families in Balkhu slum. The camp addressed major health issues such as respiratory infections, skin diseases, diarrheal illness, fever, malnutrition, and post-traumatic stress.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num" data-target="259">0</span><span class="stat-label">TOTAL BENEFICIARIES</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="120">0</span><span class="stat-label">WOMEN</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="70">0</span><span class="stat-label">MEN</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="69">0</span><span class="stat-label">CHILDREN</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/flood.png" alt="Flood Camp" />
+          </div>
+        </div>
+
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">3</div>
+              <h3 class="program-title">Ambulance Service</h3>
+            </div>
+            <p class="program-desc">
+              Over the last decade, Nepal Ambulance Service has been providing comprehensive ambulance services with 10 well-equipped ambulances. They have handled as many as 135,000 cases. NAS is also engaged on training activities to ensure quality services in the future.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num" data-target="5231">0</span><span class="stat-label">TOTAL BENEFICIARIES</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="2796">0</span><span class="stat-label">MALE</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="2525">0</span><span class="stat-label">FEMALE</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/ambulances.png" alt="Ambulance Service" />
+          </div>
+        </div>
+
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">4</div>
+              <h3 class="program-title">Pandemic Preparedness</h3>
+            </div>
+            <p class="program-desc">
+              During COVID-19, hospitals serving rapidly growing peri-urban communities found themselves acutely underprepared. What emerged from the crisis, however, became a blueprint for how coordinated action between philanthropy, science, and frontline healthcare delivery can build a lasting resilience.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num" data-target="1000">0</span><span class="stat-label">TOTAL BENEFICIARIES</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="40" data-suffix="%">0</span><span class="stat-label">MALE</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="60" data-suffix="%">0</span><span class="stat-label">FEMALE</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/pandemic.png" alt="Pandemic Preparedness" />
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-education" class="program-tab">
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">1</div>
+              <h3 class="program-title">Gorkha E-learning Collaborative and Covid Assistance</h3>
+            </div>
+            <p class="program-desc">
+              Launched in September 2020 as a COVID-19 response, the Gorkha Foundation's distance learning training for teachers and administrators grew into the Gorkha E-learning Collaborative filtered around community needs. The project empowers educators with tools to use learning even where electricity and internet are unreliable, driving both educational and social transformation.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num">2020-21</span>
+                <span class="stat-label">Year</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num">1 Year</span>
+                <span class="stat-label">Duration</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/gf.png" alt="Education" />
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-livelihood" class="program-tab">
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">1</div>
+              <h3 class="program-title">Promoting Social Entrepreneurship for Vulnerable Groups</h3>
+            </div>
+            <p class="program-desc">
+              With collaboration with Engage Nepal, HNN/HEFN helped the women entrepreneurs of the company to enroll in the Daraz online portal and develop their own portal named Nature Craft. They help them to participate in exhibitions and fairs, helped the company of them for their brand promotion, supported 75 women on their productions in group basis. Nearly 200 women are now able to produce and sell their goods at their own and earn minimum Rs. 4,000 to max 17,000 per month for their living.  
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num">2026-2027</span>
+                <span class="stat-label">Year</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/hnn.png" alt="Livelihood" />
+          </div>
+        </div>
+        
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">2</div>
+              <h3 class="program-title">Project KARMA: Capacity Building to Enhance Skill and Livelihood</h3>
+            </div>
+            <p class="program-desc">
+              KARMA project in partnership with International Development Institute (IDI) and Engage Nepal, implemented the series of targetted skill building and entrepreneurship interventions. This activities were carried out in close coordination with Dhulikhel, Namobuddha and Surya Binayak municipalities. The project specifically addressed the needs of marginalized population to the primary focuss on women with socio-economic disruptions of Covid-19.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num" data-target="355">0</span><span class="stat-label">TOTAL BENEFICIARIES</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="252">0</span><span class="stat-label">FEMALE</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="103">0</span><span class="stat-label">MALE</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/T.png" alt="Livelihood" />
+          </div>
+        </div>
+
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">3</div>
+              <h3 class="program-title">Strengthening Grassroot People Fight Covid 19</h3>
+            </div>
+            <p class="program-desc">
+              HNN and HEFN started working with Engage Nepal in early 2020 during the Covid 19 pandemic situation. They provided 650 kg of nutritious food, 260 sets of warm clothes to 240 children, 185 sets of foods to pregnant and lactating mothers, 125 children were provided community learning classes for eight months, and 140 jobless families were provided food relief for three months in Shankharapur Pharping and Manoharaa of Kathmandu Valley.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num">2020-21</span>
+                <span class="stat-label">Year</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/covid.png" alt="Livelihood" />
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-environment" class="program-tab">
+        <div class="program-row reveal-row">
+          <div class="program-content">
+            <div class="program-header">
+              <div class="program-number">1</div>
+              <h3 class="program-title">Green Homes;Green Kathmandu, Green School</h3>
+            </div>
+            <p class="program-desc">
+              The Green Homes Green Kathmandu project addresses Kathmandu's environmental challenges by converting 60 households into sustainable green homes focused on waste aggregation, composting, and recycling education that helps students in school management with knowledge and skills actively working toward the protection and conservation of the Earth. Similarly, Green School aims to establish educational institutions that equip students and school management with the knowledge and skills to actively address environmental challenges, contributing to the protection and conservation of Earth.
+            </p>
+            <div class="program-stats">
+              <div class="stat-box">
+                <span class="stat-num" data-target="259">0</span><span class="stat-label">TOTAL BENEFICIARIES</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="120">0</span><span class="stat-label">WOMEN</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="70">0</span><span class="stat-label">MEN</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-num" data-target="69">0</span><span class="stat-label">CHILDREN</span>
+              </div>
+            </div>
+          </div>
+          <div class="program-image">
+            <img src="images/green.png" alt="Green Homes Green Kathmandu" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="dynamic-discover-container" class="read-more-container">
+      <a href="" target="_blank" rel="noopener noreferrer" class="read-more-link">
+        Read More 
+        <span class="chevron">&gt;</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="engage_logo1.svg" alt="Engage Nepal Logo" class="footer-logo-img" />
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="who_we_are.html">Who We Are</a></li>
+          <li><a href="our_programs.html">Our Programs</a></li>
+          <li><a href="our_partners.html">Our Partners</a></li>
+          <li><a href="contact_us.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-info-block">
+          <div style="color: #d0e5e4; font-size: 14px;">info@engagenepal.org</div>
+          <div style="color: #d0e5e4; font-size: 14px;">703-401-2951</div>
+          <div style="color: #d0e5e4; font-size: 14px;">12512 Cavalier Forest Ct,<br />Bristow, Va 20139, USA</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Join Us.<br />Offer the gift of Hope!</h4>
+        <a href="https://www.engagenepal.org" target="_blank" rel="noopener noreferrer" class="btn-red">
+          <img src="images/heart.png" alt="Heart Icon" style="height: 18px; width: auto; display: block;" />
+          Give the Gift of Hope
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Engage Nepal. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dynamic fixed navigation visibility transitions
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('globalNavbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile Hamburger Menu Navigation Toggle logic
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+
+  const categoryData = {
+    health: {
+      title: "OUR PROGRAMS - HEALTH",
+      intro: "Our healthcare initiatives refuse to treat emergency response as a temporary endpoint. We focus on identifying deep-seated structural vulnerabilities—such as the absence of pediatric intensive care or geographical barriers to cancer screenings—and collaborate with local experts to build permanent, high-impact medical infrastructure that saves lives during and after crises."
+    },
+    education: {
+      title: "OUR PROGRAMS - EDUCATION",
+      intro: "Empowering the next generation by bridging the digital divide, supporting inclusive learning, and ensuring at-risk children have the resources they need to succeed in their educational journey regardless of geographical location."
+    },
+    livelihood: {
+      title: "OUR PROGRAMS - LIVELIHOOD",
+      intro: "Creating sustainable economic opportunities and providing skills training for marginalized women and men. We empower individuals to support their families and build resilience through community-driven entrepreneurship."
+    },
+    environment: {
+      title: "OUR PROGRAMS - ENVIRONMENT",
+      intro: "Partnering with communities to build resilience against climate change through sustainable green initiatives, eco-friendly practices, and disaster risk reduction to protect the fragile Himalayan ecosystem."
+    }
+  };
+
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        const stats = entry.target.querySelectorAll('.stat-num[data-target]');
+        stats.forEach(stat => animateCounter(stat));
+      } else {
+        if (entry.boundingClientRect.top > 0) {
+          entry.target.classList.remove('revealed');
+          entry.target.querySelectorAll('.stat-num').forEach(num => num.classList.remove('counted'));
+        }
+      }
+    });
+  }, { 
+    threshold: 0.05, 
+    rootMargin: "0px 0px -40px 0px" 
+  });
+
+  function animateCounter(element) {
+    if (element.classList.contains('counted')) return;
+    element.classList.add('counted');
+    
+    const target = parseInt(element.getAttribute('data-target'), 10);
+    if (isNaN(target)) return; 
+    
+    const suffix = element.getAttribute('data-suffix') || '';
+    const duration = 1000; 
+    const startTime = performance.now();
+
+    function updateNumber(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const easeProgress = 1 - Math.pow(1 - progress, 4);
+      const currentValue = Math.floor(easeProgress * target);
+      
+      element.innerText = currentValue.toLocaleString() + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateNumber);
+      } else {
+        element.innerText = target.toLocaleString() + suffix;
+      }
+    }
+    requestAnimationFrame(updateNumber);
+  }
+
+  function showCategory(categoryId) {
+    const allTabs = document.querySelectorAll('.program-tab');
+    allTabs.forEach(tab => tab.classList.remove('active'));
+
+    const targetTab = document.getElementById('tab-' + categoryId);
+    if(targetTab) {
+      targetTab.classList.add('active');
+      
+      const rows = targetTab.querySelectorAll('.reveal-row');
+      rows.forEach(row => {
+        row.classList.remove('revealed');
+        row.querySelectorAll('.stat-num').forEach(num => num.classList.remove('counted'));
+        scrollObserver.observe(row);
+      });
+    }
+
+    const discoverBtn = document.getElementById('dynamic-discover-container');
+    if (discoverBtn) {
+      if (categoryId === 'health') {
+        discoverBtn.classList.remove('hidden');
+      } else {
+        discoverBtn.classList.add('hidden');
+      }
+    }
+
+    const data = categoryData[categoryId];
+    if(data) {
+      const titleEl = document.getElementById('dynamic-page-title');
+      const introEl = document.getElementById('dynamic-page-intro');
+      
+      titleEl.style.opacity = 0;
+      introEl.style.opacity = 0;
+      
+      setTimeout(() => {
+        titleEl.innerText = data.title;
+        introEl.innerText = data.intro;
+        titleEl.style.transition = 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+        introEl.style.transition = 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+        titleEl.style.opacity = 1;
+        introEl.style.opacity = 1;
+      }, 100);
+    }
+
+    const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+    dropdownLinks.forEach(link => {
+      if (link.getAttribute('href') === '#' + categoryId) {
+        link.classList.add('sub-active');
+      } else {
+        link.classList.remove('sub-active');
+      }
+    });
+
+    // Close the navigation drawer layout upon a category click interaction on mobile viewports
+    menuToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash && categoryData[currentHash]) {
+      showCategory(currentHash);
+    } else {
+      showCategory('health');
+    }
+  });
+</script>
+
+</body>
+</html>
