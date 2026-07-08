@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Who We Are - Engage Nepal</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/style.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-mono/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Geist:wght@400..700&family=Geist+Mono&display=swap" rel="stylesheet" />
   
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -256,17 +254,19 @@
 
     .hero-content h1 {
       font-family: var(--font-heading);
-      font-size: clamp(24px, 3.5vw, 34px); 
+      font-size: clamp(24px, 3.5vw, 32px);
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1;
+      letter-spacing: 0;
       color: #1A1A1A;
       margin-bottom: 24px;
     }
 
     .hero-content p {
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--desc-text);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 32.5px;
+      color: rgba(0, 0, 0, 0.651);
     }
 
     /* ─── COUNTER STATS BANNER ─── */
@@ -339,23 +339,24 @@
       display: inline-block;
       padding-bottom: 8px;
       border-bottom: 3px solid var(--heading-teal);
-      text-transform: uppercase;
     }
 
     .vision-text {
-      max-width: 1100px;
+      max-width: 932px;
       margin: 0 auto;
-      font-size: clamp(15px, 2vw, 16px);
-      line-height: 1.8;
-      color: var(--desc-text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 32.5px;
+      letter-spacing: 0;
+      color: #1A1A1A;
       font-weight: 500;
     }
 
     .vision-text strong {
       color: #196A5F;
-      display: block;
-      margin-top: 16px;
-      font-weight: 600;
+      font-size: 18px;
+      line-height: 32.5px;
+      font-weight: 700;
     }
 
     /* ─── TIMELINE SECTION ─── */
@@ -702,9 +703,9 @@
           <div class="hero-content">
             <h1>A Philanthropic Bridge for Nepal's Communities</h1>
             <p>
-              Engage Nepal believes that those who are most disadvantaged in Nepal need not just a champion, but a partner and together we will build a future that our partners in Nepal can face with hope rather than despair. We serve as a philanthropic bridge, connecting the global generosity of donors with the focused, local action of grassroots organizations across Nepal. 
+              Engage Nepal&rsquo;s model is simple. We believe lasting change comes from truly connecting with and listening to the communities we serve&mdash;people whose hopes and struggles inspire us every day. To do so, we work side by side with respected Nepali non-profits who know those communities, who have earned their trust, and who seek the input of local leaders and the intended beneficiaries so that every project reflects real needs and dreams.
               <br><br>
-              We believe that sustainable, community-led impact happens when we empower those who know their communities best. Instead of traditional top-down aid, we identify high-impact local non-profits and provide them with the resources and capacity-building they need to succeed. We ensure that our interventions are holistic and address the most pressing needs of the Nepali people.
+              Over the years, we have built a family of nonprofit partners who share our vision of community-driven progress and we are proud to serve as a philanthropic bridge, connecting the global generosity of our donors with the focused, local action of these grassroots organizations across Nepal. Together, we empower the most vulnerable in Nepal so that they may face the future with hope rather than despair. Together, we Engage Nepal.
             </p>
           </div>
         </div>
@@ -739,7 +740,7 @@
         </div>
         <p class="vision-text">
           We listen to the communities we serve. We learn from the communities we serve. We partner with the communities we serve.<br />
-          Hope in the face of poverty. Hope in the face of disaster. Hope for the children and the families.<br />
+          Because hope matters &mdash; in the face of poverty, in the wake of disaster, and in the lives of children and families.<br />
           <strong>We Empower Our Partners To Choose Their Path.</strong>
         </p>
       </div>
