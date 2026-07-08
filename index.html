@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Engage Nepal</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-sans/style.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/geist@1.0.3/dist/fonts/geist-mono/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:ital,wght@1,400&family=Geist:wght@400..700&family=Geist+Mono&display=swap" rel="stylesheet" />
   
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -228,9 +226,16 @@
     .hero {
       position: relative; 
       min-height: 100vh;
-      background: url('images/heros.png') center center / cover no-repeat;
-      display: flex; 
+      background: url('images/new_home_image_v1.png') center top / cover no-repeat;
+      display: flex;
       align-items: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(30, 30, 30, 0.32); /* #1E1E1E 76% fill on a 42%-opacity layer, per design */
+      z-index: 1;
     }
     .hero .container { position: relative; z-index: 2; padding-top: 140px; padding-bottom: 80px; }
     .hero-content { max-width: 800px; }
@@ -254,6 +259,15 @@
       text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
     }
     .hero-buttons { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+    /* Above the 1440px design canvas the bg photo keeps scaling, so scale
+       the hero text with it to preserve the design's composition */
+    @media (min-width: 1441px) {
+      .hero .container { max-width: none; padding-left: 5vw; padding-right: 5vw; }
+      .hero-content { max-width: 55.5vw; }
+      .hero-content h1 { font-size: 3.33vw; }
+      .hero-content p { font-size: 1.18vw; }
+    }
  
     /* ─── INTERACTIVE BUTTONS ─────────────────────────────────────── */
     .btn-red, .btn-outline {
@@ -370,7 +384,7 @@
     
     .director-quote { position: relative; }
     .quote-icon { width: 44px; height: auto; margin-bottom: 20px; display: block; opacity: 0.8; }
-    .director-quote blockquote { font-style: italic; font-size: 15px; line-height: 1.85; color: var(--desc-text); margin-bottom: 24px; }
+    .director-quote blockquote { font-family: 'Roboto', sans-serif; font-style: italic; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: 0; color: #1A1A1A; margin-bottom: 24px; }
     .director-name { font-weight: 700; font-size: 18px; margin-bottom: 4px; color: var(--text-main); }
     .director-title { font-size: 14px; color: rgba(0,0,0,0.5); line-height: 1.6; }
  
@@ -475,6 +489,7 @@
       
       /* Change baseline hero configurations for readability */
       .hero { min-height: auto; padding: 40px 0; }
+      .hero-content h1 br { display: none; }
       .hero-buttons { flex-direction: column; align-items: stretch; width: 100%; }
       .hero-buttons .btn-red, .hero-buttons .btn-outline { width: 100%; }
  
@@ -528,7 +543,7 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1>WORKING WITH NEPALI PARTNERS TO CHANGE LIVES AND SAVE LIVES.</h1>
+      <h1>WORKING WITH NEPALI PARTNERS<br />TO CHANGE LIVES AND SAVE<br />LIVES.</h1>
       <p>Supported by the compassion of everyday Americans, Engage Nepal bridges global generosity with local action. Under the leadership of former U.S. Ambassador Scott DeLisi, we proudly partner with grassroots organizations across Nepal to drive sustainable, community-led impact where it is needed most.</p>
       <div class="hero-buttons">
         <a href="https://www.engagenepal.org" target="_blank" rel="noopener noreferrer" class="btn-red">
@@ -606,7 +621,8 @@
       <div class="director-quote">
         <img src="images/quote.png" alt="Opening Quotes Marker" class="quote-icon" />
         <blockquote>
-          Projects that have made a difference in the four core areas that define our work: health, education, livelihoods, and climate adaptation. The funds we have raised have come largely from everyday Americans who give what they can with open hearts and willing spirits. I am grateful beyond measure for the compassion and kindness that inspires them.
+          We envision a Nepal where lasting change grows from deep community connection — where local leaders guide the work, trusted Nepali nonprofits carry it forward, and global generosity helps transform hope into progress. Our projects have made a meaningful difference across the four core areas that define our mission: health, education, livelihoods, and climate adaptation.<br>
+The funds we raise come largely from everyday Americans who give what they can with open hearts and willing spirits. Their compassion humbles me, and I am grateful beyond measure for the kindness that inspires our work.
         </blockquote>
         <div class="director-name">Scott DeLisi</div>
         <div class="director-title">
