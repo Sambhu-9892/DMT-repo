@@ -302,18 +302,20 @@
     }
 
     .stats-banner h3 {
-      font-family: var(--font-mono);
-      font-size: clamp(34px, 4.5vw, 44px);
+      font-family: var(--font-body);
+      font-size: 32px;
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1;
+      letter-spacing: 0;
       margin-bottom: 6px;
     }
 
     .stat-item p {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 500;
-      letter-spacing: 0.3px;
-      opacity: 0.9;
+      line-height: 1;
+      letter-spacing: 0;
+      color: #FFFFFF;
     }
 
     /* ─── OUR VISION ─── */
@@ -353,7 +355,7 @@
     }
 
     .vision-text strong {
-      color: #196A5F;
+      color: #02413A;
       font-size: 18px;
       line-height: 32.5px;
       font-weight: 700;
@@ -395,24 +397,20 @@
     .timeline-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(40px, 6vw, 80px);
+      gap: 75px;
       align-items: center;
       position: relative;
     }
 
     /* Dynamic context bridges connecting entries together */
     .row-curve-bridge {
-      position: absolute;
-      left: 0;
+      display: block;
       width: 100%;
-      height: 140px; 
+      height: 140px;
       pointer-events: none;
       z-index: 10;
       overflow: visible;
     }
-
-    .bridge-1-to-2 { top: 380px; }
-    .bridge-2-to-3 { top: 900px; }
 
     .timeline-img {
       border-radius: 4px;
@@ -423,19 +421,18 @@
 
     .timeline-img img {
       width: 100%;
-      height: 300px; 
+      height: 354px;
       object-fit: cover;
       display: block;
     }
 
     .timeline-box {
       background: var(--story-card-bg);
-      padding: clamp(25px, 4vw, 50px);
-      border-radius: 4px;
+      padding: 48px 32px;
+      border-radius: 2px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 380px; 
       position: relative;
     }
 
@@ -464,15 +461,19 @@
     .timeline-box h3 {
       font-family: var(--font-body);
       font-weight: 700;
-      font-size: clamp(20px, 2.5vw, 24px);
-      color: #0A322C; 
+      font-size: 24px;
+      line-height: 1;
+      color: #0A322C;
       margin-bottom: 20px;
-      letter-spacing: -0.3px;
+      letter-spacing: 0;
+      text-align: left;
     }
 
     .timeline-box p {
-      font-size: 15px;
-      line-height: 1.8;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 32.5px;
+      letter-spacing: 0;
       color: var(--desc-text);
     }
 
@@ -480,11 +481,9 @@
     .row-1 .timeline-img { grid-column: 1; }
     .row-1 .timeline-box { grid-column: 2; }
 
-    .row-2 { margin-top: 140px; } 
     .row-2 .timeline-box { grid-column: 1; }
     .row-2 .timeline-img { grid-column: 2; }
 
-    .row-3 { margin-top: 140px; }
     .row-3 .timeline-img { grid-column: 1; }
     .row-3 .timeline-box { grid-column: 2; }
 
@@ -720,7 +719,7 @@
         </div>
         <div class="stat-item">
           <h3>10+</h3>
-          <p>Years Of Dedication</p>
+          <p>Years of Dedication</p>
         </div>
         <div class="stat-item">
           <h3>14+</h3>
@@ -763,7 +762,7 @@
                 <h3>April 2015: The Mountain Roared</h3>
                 <p>
                   The earth roared, the mountain fell, and the village was gone. Not damaged, not devastated — totally gone. Disappeared, as though it had never been.
-                  <br><br>
+                  <br>
                   Over eight thousand lives lost, tens of thousands injured, and over two million people left homeless. A scene repeated across Nepal.
                 </p>
               </div>
@@ -779,7 +778,7 @@
                 <h3>December 2015: A New Chapter</h3>
                 <p>
                   On December 1, 2015, Ambassador Scott DeLisi, on his first day of retirement from the State Department, took over the reins of Engage Nepal.
-                  <br><br>
+                  <br>
                   We knew it was too much to ask families to worry about preparedness when they were struggling to put a meal on the table, pay school fees, and access life-saving healthcare.
                 </p>
               </div>
@@ -801,8 +800,7 @@
                 <h3>Since Then: Our Mission Continues</h3>
                 <p>
                   Over the past ten years we have worked with our partners in Nepal on close to 100 projects in support of people who needed a helping hand. Our commitment is to the children at risk, the women who have been marginalized, and to communities living on the edge of despair as climate change threatens their way of life.
-                  <br><br>
-                  And when disaster strikes, we are there too. Today, our mission continues. Whether responding in emergencies or helping people find their way in a changing world we do what we have always done. We <span style="color: var(--red-btn); font-weight: 600;">Engage</span> <span style="color: var(--icon-teal); font-weight: 600;">Nepal</span>.
+                  And when disaster strikes, we are there too. Today, our mission continues. Whether responding in emergencies or helping people find their way in a changing world we do what we have always done. We <span style="color: var(--red-btn); font-weight: 600;">Engage</span> <span style="color: var(--icon-teal); font-weight: 600;">Nepal.</span>
                 </p>
               </div>
             </div>
