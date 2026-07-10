@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us - Engage Nepal</title>
-  
+  <title>Newsletter - Engage Nepal</title>
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Geist:wght@400..700&family=Geist+Mono&display=swap" rel="stylesheet" />
-  
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,25 +14,25 @@
       /* ─── BRAND CORE PALETTE ─── */
       --text-main:        #1A1A1A;
       --desc-text:        rgba(0, 0, 0, 0.651);
-      
+
       --red-btn:          #E44646;
       --red-btn-hover:    #F85959;
-      
+
       --icon-teal:        #00C1C9;
-      --heading-teal:     #40D6B9; 
-      --partners-bg:      #E8FAFF; 
-      --footer-bg:        #005F5B;   
+      --heading-teal:     #40D6B9;
+      --partners-bg:      #E8FAFF;
+      --footer-bg:        #005F5B;
       --white:            #ffffff;
-      --page-bg:          #ffffff; 
-      --number-bg:        #FCEAE9; 
+      --page-bg:          #ffffff;
+      --number-bg:        #FCEAE9;
       --stat-banner-bg:   #0EB0B7;
-      
-      /* Contact Page Palette */
-      --contact-bg:       #E8FAFF;
+
+      /* Newsletter Page Palette */
+      --newsletter-bg:    #E8FAFF;
       --send-btn:         #196A5F;
       --send-btn-hover:   #0F473F;
       --req-star:         #E44646;
-      
+
       --font-heading: 'DM Serif Display', serif;
       --font-body: 'Geist', sans-serif;
       --font-mono: 'Geist Mono', monospace;
@@ -44,13 +44,13 @@
     }
 
     html { scroll-behavior: smooth; }
-    
-    body { 
-      font-family: var(--font-body); 
-      font-size: 16px; 
-      font-weight: 400; 
-      color: var(--text-main); 
-      background: var(--page-bg); 
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-main);
+      background: var(--page-bg);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -64,14 +64,14 @@
 
     /* ─── FIXED NAVIGATION BAR ─── */
     nav {
-      position: fixed; 
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
       background: var(--white);
       box-shadow: 0 2px 15px rgba(0,0,0,0.03);
-      height: 90px; 
+      height: 90px;
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -79,59 +79,59 @@
       background: var(--white);
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
-    
+
     .nav-inner {
-      display: flex; 
-      align-items: center; 
+      display: flex;
+      align-items: center;
       justify-content: space-between;
       height: 100%;
-      position: relative; 
+      position: relative;
     }
 
-    .nav-logo { 
-      display: block; 
-      text-decoration: none; 
-      width: 120px; 
+    .nav-logo {
+      display: block;
+      text-decoration: none;
+      width: 120px;
       height: 100%;
     }
-    
-    .nav-logo img { 
-      position: absolute; 
-      top: 10px; 
-      height: clamp(65px, 8vw, 85px); 
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
-      display: block; 
-      z-index: 105; 
+
+    .nav-logo img {
+      position: absolute;
+      top: 10px;
+      height: clamp(65px, 8vw, 85px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: block;
+      z-index: 105;
     }
     .nav-logo img:hover { transform: scale(1.03); }
 
     .nav-links { display: flex; gap: 8px; list-style: none; align-items: center; }
     .nav-links li { position: relative; }
-    
+
     .nav-links > li > a {
-      color: var(--text-main); 
-      text-decoration: none; 
+      color: var(--text-main);
+      text-decoration: none;
       font-family: var(--font-body);
-      font-size: 15px; 
-      font-weight: 500; 
+      font-size: 15px;
+      font-weight: 500;
       letter-spacing: 0.3px;
-      padding: 8px 14px; 
-      border-radius: 50px; 
+      padding: 8px 14px;
+      border-radius: 50px;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       background: transparent;
       display: inline-flex;
       align-items: center;
       white-space: nowrap;
     }
-    
-    .nav-links > li > a:hover { 
+
+    .nav-links > li > a:hover {
       background: rgba(0,0,0,0.04);
     }
 
-    .nav-links > li > a.active { 
-      background: var(--icon-teal); 
+    .nav-links > li > a.active {
+      background: var(--icon-teal);
       color: var(--white);
-      box-shadow: 0 4px 14px rgba(0, 193, 201, 0.3); 
+      box-shadow: 0 4px 14px rgba(0, 193, 201, 0.3);
     }
 
     .dropdown-arrow-img {
@@ -141,7 +141,7 @@
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       opacity: 0.7;
     }
-    
+
     .nav-links li:hover .dropdown-arrow-img { transform: rotate(180deg); }
 
     .dropdown-menu {
@@ -166,7 +166,7 @@
     .nav-links li:hover .dropdown-menu {
       opacity: 1;
       visibility: visible;
-      transform: translateX(-50%) translateY(5px); 
+      transform: translateX(-50%) translateY(5px);
     }
 
     .dropdown-menu a {
@@ -186,7 +186,7 @@
     .dropdown-menu a:hover {
       color: var(--icon-teal);
       background: rgba(0, 193, 201, 0.03);
-      padding-left: 30px; 
+      padding-left: 30px;
     }
     .dropdown-menu a::after {
       content: "\2192";
@@ -216,7 +216,7 @@
       border-radius: 2px;
       transition: all 0.3s ease;
     }
-    
+
     .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
     .menu-toggle.open span:nth-child(2) { opacity: 0; }
     .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
@@ -224,75 +224,54 @@
     /* ─── CONTENT OFFSET FOR FIXED NAVBAR ─── */
     main { padding-top: 90px; }
 
-    /* ─── COMPACT CONTACT LAYOUT ─── */
-    .contact-wrapper {
-      background-color: var(--contact-bg);
+    /* ─── NEWSLETTER SIGNUP LAYOUT ─── */
+    .newsletter-wrapper {
+      background-color: var(--newsletter-bg);
       padding: clamp(40px, 6vw, 80px) 0;
       min-height: calc(100vh - 90px);
       display: flex;
       align-items: center;
     }
 
-    .contact-container {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: var(--col-gutter);
-      align-items: stretch;
-      width: 100%;
-    }
-
-    /* Left Side: Form Card */
-    .form-card {
+    .newsletter-card {
       background: var(--white);
       border-radius: 6px;
-      padding: clamp(25px, 4vw, 45px) clamp(20px, 4vw, 40px);
+      padding: clamp(30px, 5vw, 55px) clamp(24px, 5vw, 50px);
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.03);
-      display: flex;
-      flex-direction: column;
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .contact-heading {
+    .newsletter-heading {
       font-family: var(--font-heading);
       font-size: clamp(28px, 4vw, 34px);
       font-weight: 400;
       color: var(--text-main);
-      margin-bottom: 30px;
+      margin-bottom: 16px;
       display: inline-block;
       border-bottom: 3px solid var(--heading-teal);
       padding-bottom: 6px;
       text-transform: uppercase;
-      align-self: flex-start;
       letter-spacing: 0.5px;
     }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .newsletter-intro {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--desc-text);
+      margin-bottom: 32px;
     }
 
-    .form-group {
+    .newsletter-form {
       display: flex;
-      flex-direction: column;
-      margin-bottom: 18px;
+      gap: 14px;
+      justify-content: center;
     }
 
-    .form-group label {
-      font-size: 14px;
-      color: var(--text-main);
-      margin-bottom: 6px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-
-    .req {
-      color: var(--req-star);
-      margin-left: 3px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
+    .newsletter-form input {
+      flex: 1;
+      max-width: 380px;
       border: 1px solid #D2D5DA;
       background-color: var(--white);
       border-radius: 4px;
@@ -304,195 +283,137 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: #9AA2AF;
-    }
+    .newsletter-form input::placeholder { color: #9AA2AF; }
 
-    .form-group input:focus,
-    .form-group textarea:focus {
+    .newsletter-form input:focus {
       border-color: var(--icon-teal);
       box-shadow: 0 0 0 3px rgba(0, 193, 201, 0.1);
     }
 
-    .form-group textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 5px;
-    }
-
-    .btn-send {
-      background: var(--send-btn); 
+    .btn-subscribe {
+      background: var(--send-btn);
       color: var(--white);
       border: none;
-      border-radius: 4px; 
+      border-radius: 4px;
       padding: 12px 40px;
       font-family: var(--font-body);
       font-size: 15px;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s ease;
-      width: auto;
+      white-space: nowrap;
     }
 
-    .btn-send:hover {
+    .btn-subscribe:hover {
       background: var(--send-btn-hover);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(25, 106, 95, 0.2);
     }
 
-    /* Right Side: Sidebar Card */
-    .info-card {
-      background: var(--white);
-      border-radius: 6px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.03);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden; 
-    }
-
-    .contact-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .info-card-content {
-      padding: clamp(25px, 4vw, 35px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 26px;
-      flex-grow: 1;
-    }
-
-    .detail-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      font-size: 15px;
-      line-height: 1.5;
+    .newsletter-note {
+      font-size: 13px;
       color: var(--desc-text);
-    }
-
-    .detail-item svg {
-      width: 22px;
-      height: 22px;
-      color: var(--send-btn);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .detail-item p {
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 2px;
+      margin-top: 18px;
     }
 
     /* ─── FOOTER ANCHOR BLOCK ─── */
     footer {
-      background: var(--footer-bg); 
+      background: var(--footer-bg);
       color: var(--white);
       padding: clamp(50px, 6vw, 80px) 0 40px;
       font-family: var(--font-body);
     }
 
     .footer-grid {
-      display: grid; 
+      display: grid;
       grid-template-columns: 2fr 1fr 1.2fr 1.8fr;
-      gap: var(--col-gutter); 
+      gap: var(--col-gutter);
       margin-bottom: 40px;
     }
 
-    .footer-logo-img { 
-      max-width: 100%; 
-      height: 60px; 
-      margin-bottom: 24px; 
-      display: block; 
-      object-fit: contain; 
+    .footer-logo-img {
+      max-width: 100%;
+      height: 60px;
+      margin-bottom: 24px;
+      display: block;
+      object-fit: contain;
     }
 
     .footer-socials { display: flex; gap: 12px; }
-    
+
     .footer-socials a {
-      width: 36px; 
-      height: 36px; 
+      width: 36px;
+      height: 36px;
       border: 1.5px solid rgba(255,255,255,0.3);
-      border-radius: 4px; 
-      display: flex; 
-      align-items: center; 
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      color: var(--white); 
+      color: var(--white);
       text-decoration: none;
       transition: all 0.2s ease;
     }
 
-    .footer-socials a:hover { 
-      border-color: var(--white); 
-      background: rgba(255,255,255,0.1); 
+    .footer-socials a:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.1);
     }
 
     .footer-col h4 {
-      font-size: 16px; 
-      font-weight: 600; 
+      font-size: 16px;
+      font-weight: 600;
       letter-spacing: 0.5px;
-      margin-bottom: 24px; 
+      margin-bottom: 24px;
       color: var(--white);
     }
 
     .footer-col ul { list-style: none; }
     .footer-col ul li { margin-bottom: 12px; }
-    
+
     .footer-col ul li a {
-      color: #d0e5e4; 
-      text-decoration: none; 
+      color: #d0e5e4;
+      text-decoration: none;
       font-size: 14px;
       transition: color 0.2s;
     }
 
     .footer-col ul li a:hover { color: var(--white); }
-    
+
     .contact-info-block {
-      display: flex; 
-      flex-direction: column; 
-      gap: 12px; 
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .btn-red {
-      display: inline-flex; 
-      align-items: center; 
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      height: 44px; 
-      padding: 0 24px; 
-      font-family: var(--font-body); 
-      font-size: 14px; 
-      font-weight: 500; 
-      border-radius: 4px; 
-      cursor: pointer; 
-      text-decoration: none; 
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+      height: 44px;
+      padding: 0 24px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       gap: 10px;
-      background: var(--red-btn); 
-      color: var(--white); 
-      border: none; 
+      background: var(--red-btn);
+      color: var(--white);
+      border: none;
       white-space: nowrap;
     }
 
-    .btn-red:hover { 
-      background: var(--red-btn-hover); 
-      transform: translateY(-3px); 
-      box-shadow: 0 6px 15px rgba(228, 70, 70, 0.3); 
+    .btn-red:hover {
+      background: var(--red-btn-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(228, 70, 70, 0.3);
     }
 
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 30px; 
+      padding-top: 30px;
       text-align: center;
     }
 
@@ -500,13 +421,12 @@
 
     /* ─── BREAKPOINTS SYSTEM ─── */
     @media (max-width: 1024px) {
-      .contact-container { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
 
     @media (max-width: 768px) {
       .menu-toggle { display: flex; }
-      
+
       /* Mobile Menu Drawer Overlay */
       .nav-links {
         position: fixed;
@@ -523,7 +443,7 @@
         transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         overflow-y: auto;
       }
-      
+
       .nav-links.open { right: 0; }
       .nav-links > li { width: 100%; }
       .nav-links > li > a {
@@ -533,7 +453,7 @@
         border-radius: 8px;
       }
       .nav-links > li > a.active { color: var(--white) !important; }
-      
+
       /* Mobile Accordion Dropdown Setup */
       .nav-links li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
       .dropdown-menu {
@@ -555,8 +475,9 @@
       }
       .dropdown-menu a { padding: 10px 20px; }
 
-      .form-row { grid-template-columns: 1fr; }
-      .btn-send { width: 100%; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form input { max-width: 100%; }
+      .btn-subscribe { width: 100%; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; }
     }
   </style>
@@ -581,7 +502,7 @@
         <li><a href="who_we_are.html">Who We Are</a></li>
         <li class="nav-dropdown">
           <a href="#" class="nav-programs-label" onclick="return false;">
-            Our Programs 
+            Our Programs
             <img src="images/dropdown.png" alt="Toggle" class="dropdown-arrow-img" />
           </a>
           <div class="dropdown-menu">
@@ -592,85 +513,28 @@
           </div>
         </li>
         <li><a href="our_partners.html">Our Partners</a></li>
-        <li><a href="newsletter.html">Newsletter</a></li>
-        <li><a href="contact_us.html" class="active">Contact Us</a></li>
+        <li><a href="newsletter.html" class="active">Newsletter</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
       </ul>
     </div>
   </nav>
 
   <main>
-    <section class="contact-wrapper">
-      <div class="container contact-container">
-        
-        <!-- Left Side: Interactive Contact Form -->
-        <div class="form-card">
-          <h2 class="contact-heading">Contact Us</h2>
-          
-          <form action="#" method="POST">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First Name<span class="req">*</span></label>
-                <input type="text" id="firstName" placeholder="Enter First Name" required />
-              </div>
-              <div class="form-group">
-                <label for="lastName">Last Name<span class="req">*</span></label>
-                <input type="text" id="lastName" placeholder="Enter Last Name" required />
-              </div>
-            </div>
+    <section class="newsletter-wrapper">
+      <div class="container">
+        <div class="newsletter-card">
+          <h2 class="newsletter-heading">Newsletter</h2>
+          <p class="newsletter-intro">
+            Stay connected with Engage Nepal. Subscribe to our newsletter to receive updates on our programs in health, education, livelihood, and environment, along with stories of impact from the communities we serve.
+          </p>
 
-            <div class="form-group">
-              <label for="email">Email Address<span class="req">*</span></label>
-              <input type="email" id="email" placeholder="Enter Email Address" required />
-            </div>
-
-            <div class="form-group">
-              <label for="message">Message<span class="req">*</span></label>
-              <textarea id="message" placeholder="Type your message here..." required></textarea>
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn-send">Send Message</button>
-            </div>
+          <form action="#" method="POST" class="newsletter-form">
+            <input type="email" placeholder="Enter Email Address" required aria-label="Email Address" />
+            <button type="submit" class="btn-subscribe">Subscribe</button>
           </form>
+
+          <p class="newsletter-note">We respect your inbox — no spam, and you can unsubscribe at any time.</p>
         </div>
-
-        <!-- Right Side: Contact Information Cards -->
-        <div class="info-card">
-          <img src="images/contact.jpg" alt="Contact Us Banner" class="contact-image" />
-          
-          <div class="info-card-content">
-            <div class="detail-item">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-              </svg>
-              <div>
-                <p>Email Address</p>
-                <span>info@engagenepal.org</span>
-              </div>
-            </div>
-            
-            <div class="detail-item">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.21 17.32C10.38 15.93 8.06 13.62 6.67 10.79L8.94 8.53C9.21 8.25 9.31 7.86 9.19 7.52C8.83 6.41 8.63 5.22 8.63 3.99C8.63 3.45 8.19 3 7.64 3H4C3.45 3 3 3.45 3 3.99C3 13.38 10.62 21 20.01 21C20.55 21 21 20.55 21 20V16.37C21 15.83 20.55 15.38 20.01 15.38Z"/>
-              </svg>
-              <div>
-                <p>Phone Number</p>
-                <span>+1 (703) 401-2951</span>
-              </div>
-            </div>
-
-            <div class="detail-item">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"/>
-              </svg>
-              <div>
-                <p>Office Address</p>
-                <span>12512 Cavalier Forest Ct, Bristow, Va 20139, USA</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   </main>
