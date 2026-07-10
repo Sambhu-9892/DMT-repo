@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Newsletter - Engage Nepal</title>
+  <title>Newsletters - Engage Nepal</title>
 
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Geist:wght@400..700&family=Geist+Mono&display=swap" rel="stylesheet" />
 
@@ -14,6 +14,7 @@
       /* ─── BRAND CORE PALETTE ─── */
       --text-main:        #1A1A1A;
       --desc-text:        rgba(0, 0, 0, 0.651);
+      --visit-link:       #2058DB;
 
       --red-btn:          #E44646;
       --red-btn-hover:    #F85959;
@@ -24,14 +25,11 @@
       --footer-bg:        #005F5B;
       --white:            #ffffff;
       --page-bg:          #ffffff;
-      --number-bg:        #FCEAE9;
-      --stat-banner-bg:   #0EB0B7;
 
       /* Newsletter Page Palette */
       --newsletter-bg:    #E8FAFF;
       --send-btn:         #196A5F;
       --send-btn-hover:   #0F473F;
-      --req-star:         #E44646;
 
       --font-heading: 'DM Serif Display', serif;
       --font-body: 'Geist', sans-serif;
@@ -129,9 +127,10 @@
     }
 
     .nav-links > li > a.active {
-      background: var(--icon-teal);
-      color: var(--white);
-      box-shadow: 0 4px 14px rgba(0, 193, 201, 0.3);
+      text-decoration: underline;
+      text-decoration-color: var(--icon-teal);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 6px;
     }
 
     .dropdown-arrow-img {
@@ -224,43 +223,129 @@
     /* ─── CONTENT OFFSET FOR FIXED NAVBAR ─── */
     main { padding-top: 90px; }
 
-    /* ─── NEWSLETTER SIGNUP LAYOUT ─── */
-    .newsletter-wrapper {
-      background-color: var(--newsletter-bg);
-      padding: clamp(40px, 6vw, 80px) 0;
-      min-height: calc(100vh - 90px);
-      display: flex;
-      align-items: center;
+    /* ─── NEWSLETTERS HERO BAND ─── */
+    .newsletters-hero {
+      background: var(--newsletter-bg);
+      padding: clamp(40px, 6vw, 70px) 0 clamp(30px, 5vw, 50px);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      display: inline-block;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--heading-teal);
+      text-transform: capitalize;
+    }
+
+    .newsletters-intro {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: clamp(15px, 2vw, 16px);
+      line-height: 1.8;
+      color: var(--text-main);
+    }
+
+    .newsletters-intro p + p { margin-top: 12px; }
+
+    /* ─── NEWSLETTERS CARD GRID ─── */
+    .newsletters-grid-section {
+      background: var(--white);
+      padding: clamp(40px, 6vw, 70px) 0 clamp(50px, 7vw, 90px);
+    }
+
+    .newsletters-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--col-gutter);
+      align-items: stretch;
     }
 
     .newsletter-card {
       background: var(--white);
-      border-radius: 6px;
-      padding: clamp(30px, 5vw, 55px) clamp(24px, 5vw, 50px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04), 0 5px 15px rgba(0, 0, 0, 0.03);
-      max-width: 720px;
-      margin: 0 auto;
+      border-radius: 8px;
+      padding: 30px 24px 34px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+
+    .newsletter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .newsletter-thumb {
+      width: 100%;
+      max-width: 210px;
+      height: 130px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 22px;
+      border: 1px solid rgba(0, 0, 0, 0.55);
+    }
+
+    .newsletter-card-title {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.45;
+      text-align: center;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .newsletter-card-desc {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+
+    .visit-link {
+      align-self: flex-start;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--visit-link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .visit-link:hover { color: #1543ad; }
+
+    /* ─── SUBSCRIBE BAND ─── */
+    .subscribe-band {
+      max-width: 980px;
+      margin: clamp(50px, 7vw, 80px) auto 0;
+      background: var(--newsletter-bg);
+      border-radius: 8px;
+      padding: clamp(28px, 4vw, 45px) clamp(22px, 4vw, 50px);
       text-align: center;
     }
 
-    .newsletter-heading {
+    .subscribe-band h3 {
       font-family: var(--font-heading);
-      font-size: clamp(28px, 4vw, 34px);
       font-weight: 400;
-      color: var(--text-main);
-      margin-bottom: 16px;
-      display: inline-block;
-      border-bottom: 3px solid var(--heading-teal);
-      padding-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: clamp(22px, 3vw, 27px);
+      margin-bottom: 10px;
     }
 
-    .newsletter-intro {
-      font-size: 16px;
-      line-height: 1.7;
+    .subscribe-band > p {
+      font-size: 15px;
       color: var(--desc-text);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
     .newsletter-form {
@@ -308,12 +393,6 @@
       background: var(--send-btn-hover);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(25, 106, 95, 0.2);
-    }
-
-    .newsletter-note {
-      font-size: 13px;
-      color: var(--desc-text);
-      margin-top: 18px;
     }
 
     /* ─── FOOTER ANCHOR BLOCK ─── */
@@ -420,7 +499,12 @@
     .footer-bottom p { font-size: 14px; color: #d0e5e4; opacity: 0.7; }
 
     /* ─── BREAKPOINTS SYSTEM ─── */
+    @media (max-width: 1200px) {
+      .newsletters-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
     @media (max-width: 1024px) {
+      .newsletters-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
 
@@ -452,7 +536,6 @@
         padding: 12px 16px;
         border-radius: 8px;
       }
-      .nav-links > li > a.active { color: var(--white) !important; }
 
       /* Mobile Accordion Dropdown Setup */
       .nav-links li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
@@ -474,6 +557,8 @@
         visibility: visible;
       }
       .dropdown-menu a { padding: 10px 20px; }
+
+      .newsletters-grid { grid-template-columns: 1fr; }
 
       .newsletter-form { flex-direction: column; }
       .newsletter-form input { max-width: 100%; }
@@ -513,28 +598,81 @@
           </div>
         </li>
         <li><a href="our_partners.html">Our Partners</a></li>
-        <li><a href="newsletter.html" class="active">Newsletter</a></li>
+        <li><a href="newsletter.html" class="active">Newsletters</a></li>
         <li><a href="contact_us.html">Contact Us</a></li>
       </ul>
     </div>
   </nav>
 
   <main>
-    <section class="newsletter-wrapper">
+    <!-- Hero band with title + intro, per design -->
+    <header class="newsletters-hero">
       <div class="container">
-        <div class="newsletter-card">
-          <h2 class="newsletter-heading">Newsletter</h2>
-          <p class="newsletter-intro">
-            Stay connected with Engage Nepal. Subscribe to our newsletter to receive updates on our programs in health, education, livelihood, and environment, along with stories of impact from the communities we serve.
-          </p>
-
-          <form action="#" method="POST" class="newsletter-form">
-            <input type="email" placeholder="Enter Email Address" required aria-label="Email Address" />
-            <button type="submit" class="btn-subscribe">Subscribe</button>
-          </form>
-
-          <p class="newsletter-note">We respect your inbox — no spam, and you can unsubscribe at any time.</p>
+        <div class="section-title">
+          <h2>Newsletters</h2>
         </div>
+        <div class="newsletters-intro">
+          <p>At Engage Nepal, we believe that meaningful change is achieved through collaboration. By working alongside a dedicated network of partners, we are able to deliver impactful programs that improve access to education, healthcare, livelihood opportunities, and disaster response across Nepal.</p>
+          <p>As we continue to grow, we are strengthening this network by fostering collaboration, transparency, accountability, and a shared commitment to creating lasting impact. Together with our partners, we are empowering vulnerable communities with the resources, support, and opportunities needed to build brighter, more resilient futures.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="newsletters-grid-section">
+      <div class="container">
+
+        <!--
+          HOW TO ADD A NEWSLETTER
+          ───────────────────────
+          Copy one <article class="newsletter-card"> block below, paste it at the TOP of
+          .newsletters-grid (newest first), then edit four things:
+            1. the thumbnail <img src="images/newsletter/...">  (drop the photo into images/newsletter/)
+            2. the date on the second line of the title
+            3. the newsletter's headline in <p class="newsletter-card-desc">
+            4. the href of the "Visit Website" link
+        -->
+
+        <div class="newsletters-grid">
+
+          <article class="newsletter-card">
+            <img class="newsletter-thumb" src="images/newsletter/1.jpg" alt="Engage Nepal Partnership Council interaction meeting" />
+            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />June 15, 2026</h3>
+            <p class="newsletter-card-desc">Engage Nepal Partnership Council: A Formula for Success</p>
+            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/engage-nepal-partnership-council-a-formula-for-success-a20b5712-6b74-463d-a5dc-7d00276221dd" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </article>
+
+          <article class="newsletter-card">
+            <img class="newsletter-thumb" src="images/newsletter/2.jpg" alt="Students and partners with a project banner" />
+            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />May 27, 2026</h3>
+            <p class="newsletter-card-desc">So Proud of Our Partners; So Grateful for You</p>
+            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/so-proud-of-our-partners-so-grateful-for-you-e803f929-66ea-4070-9c12-6dcda052a1dd" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </article>
+
+          <article class="newsletter-card">
+            <img class="newsletter-thumb" src="images/newsletter/3.jpg" alt="Green School students learning eco-friendly practices" />
+            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 28, 2026</h3>
+            <p class="newsletter-card-desc">Use your Superpower....</p>
+            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/use-your-superpower-87e1d3a2-f84e-4621-81d9-2d4160023a09" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </article>
+
+          <article class="newsletter-card">
+            <img class="newsletter-thumb" src="images/newsletter/4.jpg" alt="Volunteer beneath the Nepali flag" />
+            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 18, 2026</h3>
+            <p class="newsletter-card-desc">The &ldquo;YES&rdquo; or the &ldquo;NO&rdquo;</p>
+            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/the-yes-or-the-no-c120ff85-e8c8-4211-9c68-44d2ac598c4b" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </article>
+
+          <article class="newsletter-card">
+            <img class="newsletter-thumb" src="images/newsletter/5.jpg" alt="Health worker examining a child at a clinic" />
+            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 14, 2026</h3>
+            <p class="newsletter-card-desc">Children in Need. We Can Help. YOU Can Help.</p>
+            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/children-in-need-we-can-help-you-can-help-f6f0f28b-8414-434f-b338-6ec8e9023d8e" target="_blank" rel="noopener noreferrer">Visit Website</a>
+          </article>
+
+        </div>
+
+        
+
       </div>
     </section>
   </main>
