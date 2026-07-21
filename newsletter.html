@@ -325,6 +325,29 @@
 
     .visit-link:hover { color: #1543ad; }
 
+    .visit-link.is-disabled {
+      color: var(--desc-text);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .visit-link.is-disabled:hover { color: var(--desc-text); }
+
+    /* ─── NEWSLETTER YEAR GROUPS ─── */
+    .newsletter-year-block { scroll-margin-top: 110px; }
+    .newsletter-year-block + .newsletter-year-block { margin-top: 60px; }
+
+    .newsletter-year-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(22px, 3vw, 27px);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      display: inline-block;
+      margin-bottom: 24px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--heading-teal);
+    }
+
     /* ─── SUBSCRIBE BAND ─── */
     .subscribe-band {
       max-width: 980px;
@@ -598,7 +621,21 @@
           </div>
         </li>
         <li><a href="our_partners.html">Our Partners</a></li>
-        <li><a href="newsletter.html" class="active">Newsletters</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="active nav-programs-label" onclick="return false;">
+            Newsletters
+            <img src="images/dropdown.png" alt="Toggle" class="dropdown-arrow-img" />
+          </a>
+          <div class="dropdown-menu">
+            <a href="newsletter.html#year-2026">2026</a>
+            <a href="newsletter.html#year-2025">2025</a>
+            <a href="newsletter.html#year-2024">2024</a>
+            <a href="newsletter.html#year-2023">2023</a>
+            <a href="newsletter.html#year-2022">2022</a>
+            <a href="newsletter.html#year-2021">2021</a>
+            <a href="newsletter.html#year-2020">2020</a>
+          </div>
+        </li>
         <li><a href="contact_us.html">Contact Us</a></li>
       </ul>
     </div>
@@ -624,54 +661,134 @@
         <!--
           HOW TO ADD A NEWSLETTER
           ───────────────────────
-          Copy one <article class="newsletter-card"> block below, paste it at the TOP of
-          .newsletters-grid (newest first), then edit four things:
+          Find the .newsletter-year-block for the year it belongs to (add a new
+          block with id="year-YYYY" if that year doesn't exist yet, and add a
+          matching link in the Newsletters nav dropdown on every page).
+          Copy one <article class="newsletter-card"> block, paste it at the TOP
+          of that year's .newsletters-grid (newest first), then edit four things:
             1. the thumbnail <img src="images/newsletter/...">  (drop the photo into images/newsletter/)
             2. the date on the second line of the title
             3. the newsletter's headline in <p class="newsletter-card-desc">
             4. the href of the "Visit Website" link
         -->
 
-        <div class="newsletters-grid">
+        <div class="newsletter-year-block" id="year-2026">
+          <h3 class="newsletter-year-heading">2026</h3>
+          <div class="newsletters-grid">
 
-          <article class="newsletter-card">
-            <img class="newsletter-thumb" src="images/newsletter/1.jpg" alt="Engage Nepal Partnership Council interaction meeting" />
-            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />June 15, 2026</h3>
-            <p class="newsletter-card-desc">Engage Nepal Partnership Council: A Formula for Success</p>
-            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/engage-nepal-partnership-council-a-formula-for-success-a20b5712-6b74-463d-a5dc-7d00276221dd" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </article>
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/1.jpg" alt="Engage Nepal Partnership Council interaction meeting" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />June 15, 2026</h3>
+              <p class="newsletter-card-desc">Engage Nepal Partnership Council: A Formula for Success</p>
+              <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/engage-nepal-partnership-council-a-formula-for-success-a20b5712-6b74-463d-a5dc-7d00276221dd" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </article>
 
-          <article class="newsletter-card">
-            <img class="newsletter-thumb" src="images/newsletter/2.jpg" alt="Students and partners with a project banner" />
-            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />May 27, 2026</h3>
-            <p class="newsletter-card-desc">So Proud of Our Partners; So Grateful for You</p>
-            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/so-proud-of-our-partners-so-grateful-for-you-e803f929-66ea-4070-9c12-6dcda052a1dd" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </article>
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/2.jpg" alt="Students and partners with a project banner" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />May 27, 2026</h3>
+              <p class="newsletter-card-desc">So Proud of Our Partners; So Grateful for You</p>
+              <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/so-proud-of-our-partners-so-grateful-for-you-e803f929-66ea-4070-9c12-6dcda052a1dd" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </article>
 
-          <article class="newsletter-card">
-            <img class="newsletter-thumb" src="images/newsletter/3.jpg" alt="Green School students learning eco-friendly practices" />
-            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 28, 2026</h3>
-            <p class="newsletter-card-desc">Use your Superpower....</p>
-            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/use-your-superpower-87e1d3a2-f84e-4621-81d9-2d4160023a09" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </article>
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/3.jpg" alt="Green School students learning eco-friendly practices" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 28, 2026</h3>
+              <p class="newsletter-card-desc">Use your Superpower....</p>
+              <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/use-your-superpower-87e1d3a2-f84e-4621-81d9-2d4160023a09" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </article>
 
-          <article class="newsletter-card">
-            <img class="newsletter-thumb" src="images/newsletter/4.jpg" alt="Volunteer beneath the Nepali flag" />
-            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 18, 2026</h3>
-            <p class="newsletter-card-desc">The &ldquo;YES&rdquo; or the &ldquo;NO&rdquo;</p>
-            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/the-yes-or-the-no-c120ff85-e8c8-4211-9c68-44d2ac598c4b" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </article>
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/4.jpg" alt="Volunteer beneath the Nepali flag" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 18, 2026</h3>
+              <p class="newsletter-card-desc">The &ldquo;YES&rdquo; or the &ldquo;NO&rdquo;</p>
+              <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/the-yes-or-the-no-c120ff85-e8c8-4211-9c68-44d2ac598c4b" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </article>
 
-          <article class="newsletter-card">
-            <img class="newsletter-thumb" src="images/newsletter/5.jpg" alt="Health worker examining a child at a clinic" />
-            <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 14, 2026</h3>
-            <p class="newsletter-card-desc">Children in Need. We Can Help. YOU Can Help.</p>
-            <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/children-in-need-we-can-help-you-can-help-f6f0f28b-8414-434f-b338-6ec8e9023d8e" target="_blank" rel="noopener noreferrer">Visit Website</a>
-          </article>
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/5.jpg" alt="Health worker examining a child at a clinic" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />April 14, 2026</h3>
+              <p class="newsletter-card-desc">Children in Need. We Can Help. YOU Can Help.</p>
+              <a class="visit-link" href="https://engagenepal.dm.networkforgood.com/emails/children-in-need-we-can-help-you-can-help-f6f0f28b-8414-434f-b338-6ec8e9023d8e" target="_blank" rel="noopener noreferrer">Visit Website</a>
+            </article>
 
+          </div>
         </div>
 
-        
+        <!-- Placeholder year archives below — swap in real newsletters as they become available -->
+
+        <div class="newsletter-year-block" id="year-2025">
+          <h3 class="newsletter-year-heading">2025</h3>
+          <div class="newsletters-grid">
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/5.jpg" alt="Engage Nepal community program" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />2025 Archive</h3>
+              <p class="newsletter-card-desc">Placeholder entry — add the 2025 newsletter roundup here.</p>
+              <span class="visit-link is-disabled">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="newsletter-year-block" id="year-2024">
+          <h3 class="newsletter-year-heading">2024</h3>
+          <div class="newsletters-grid">
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/4.jpg" alt="Engage Nepal community program" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />2024 Archive</h3>
+              <p class="newsletter-card-desc">Placeholder entry — add the 2024 newsletter roundup here.</p>
+              <span class="visit-link is-disabled">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="newsletter-year-block" id="year-2023">
+          <h3 class="newsletter-year-heading">2023</h3>
+          <div class="newsletters-grid">
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/3.jpg" alt="Engage Nepal community program" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />2023 Archive</h3>
+              <p class="newsletter-card-desc">Placeholder entry — add the 2023 newsletter roundup here.</p>
+              <span class="visit-link is-disabled">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="newsletter-year-block" id="year-2022">
+          <h3 class="newsletter-year-heading">2022</h3>
+          <div class="newsletters-grid">
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/2.jpg" alt="Engage Nepal community program" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />2022 Archive</h3>
+              <p class="newsletter-card-desc">Placeholder entry — add the 2022 newsletter roundup here.</p>
+              <span class="visit-link is-disabled">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="newsletter-year-block" id="year-2021">
+          <h3 class="newsletter-year-heading">2021</h3>
+          <div class="newsletters-grid">
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/1.jpg" alt="Engage Nepal community program" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />2021 Archive</h3>
+              <p class="newsletter-card-desc">Placeholder entry — add the 2021 newsletter roundup here.</p>
+              <span class="visit-link is-disabled">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="newsletter-year-block" id="year-2020">
+          <h3 class="newsletter-year-heading">2020</h3>
+          <div class="newsletters-grid">
+            <article class="newsletter-card">
+              <img class="newsletter-thumb" src="images/newsletter/5.jpg" alt="Engage Nepal community program" />
+              <h3 class="newsletter-card-title">Engage Nepal Newsletter<br />2020 Archive</h3>
+              <p class="newsletter-card-desc">Placeholder entry — add the 2020 newsletter roundup here.</p>
+              <span class="visit-link is-disabled">Coming Soon</span>
+            </article>
+          </div>
+        </div>
+
+
 
       </div>
     </section>
